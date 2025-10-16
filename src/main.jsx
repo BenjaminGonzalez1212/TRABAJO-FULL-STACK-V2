@@ -5,12 +5,13 @@ import './index.css'
 import App from './App.jsx'
 import Login from './tienda/IniciarSecion.jsx'
 import Signup from './tienda/RegistroUsuario.jsx'
+import Dashboard from './tienda/DashBoard.jsx'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 const router = createBrowserRouter([
     {
-    path: "/TRABAJO-FULL-STACK-V2",
+    path: "/TRABAJO-FULL-STACK-V2/app",
     element: <App />,
   },
   
@@ -22,6 +23,11 @@ const router = createBrowserRouter([
   {
     path: "/TRABAJO-FULL-STACK-V2/signup",
     element: <Signup />,
+  },
+
+  {
+    path: "/TRABAJO-FULL-STACK-V2/dashboard",
+    element: <Dashboard />,
   },
 ])
 
