@@ -10,17 +10,17 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 const router = createBrowserRouter([
     {
-    path: "/TRANAJO-FULL-STACK-V2",
+    path: "/TRABAJO-FULL-STACK-V2",
     element: <App />,
   },
   
   {
-    path: "/TRANAJO-FULL-STACK-V2/login",
+    path: "/TRABAJO-FULL-STACK-V2/login",
     element: <Login />,
   },
 
   {
-    path: "/TRANAJO-FULL-STACK-V2/signup",
+    path: "/TRABAJO-FULL-STACK-V2/signup",
     element: <Signup />,
   },
 ])
