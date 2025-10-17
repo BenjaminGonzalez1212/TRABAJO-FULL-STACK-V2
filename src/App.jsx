@@ -45,8 +45,8 @@ function App() {
             </ul>
 
             <form className="d-flex">
-              <input className="form-control me-2" type="search" placeholder="Buscar" />
-              <button className="btn btn-secondary" type="submit">Buscar</button>
+              <li className="nav-item"><a className="nav-link active" href="/TRABAJO-FULL-STACK-V2/login">Login</a></li>
+              <li className="nav-item"><a className="nav-link active" href="/TRABAJO-FULL-STACK-V2/signup">SignUp</a></li>
             </form>
           </div>
         </div>

@@ -1,5 +1,18 @@
+import DefaultLayout from "./layout/DefaultLayout";
+
 export default function Login() {
-    return <h1>
-        hello login
-    </h1>
+    return (
+        <DefaultLayout>
+            <form className="form">
+                <h1>Login</h1>
+                <label>Username</label>
+                <input type = 'text'/>
+
+                <label>Password</label>
+                <input type = 'password'/>
+
+                <button>Login</button>
+            </form>
+        </DefaultLayout>
+    );
 }

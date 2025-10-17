@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+import { StrictMode, useContext } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 
@@ -8,6 +8,8 @@ import Signup from './tienda/RegistroUsuario.jsx'
 import Dashboard from './tienda/DashBoard.jsx'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import ProtectedRoute from './tienda/ProtectedRoute.jsx'
+import AuthContext, { AuthProvider } from './tienda/auth/AuthProvider.jsx'
 
 const router = createBrowserRouter([
     {
@@ -26,13 +28,23 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/TRABAJO-FULL-STACK-V2/dashboard",
-    element: <Dashboard />,
+    path: "/TRABAJO-FULL-STACK-V2/",
+    element: <ProtectedRoute />,
+    children: [
+      {
+        path: "/TRABAJO-FULL-STACK-V2/Dashboard",
+        element: <Dashboard />,
+      },
+    ],
   },
 ])
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 )
+
+export const useAuth = () => useContext(AuthContext);
