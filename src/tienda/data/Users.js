@@ -14,3 +14,5 @@ export const createUser = (user) => {
   users.push(user);
   saveUsers(users);
 };
+
+//cuando admin este en desarrollo, añadir eliminar por.. correo y usuario? supongo o solo por correo, y tambier buscar usuario

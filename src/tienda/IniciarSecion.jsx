@@ -13,6 +13,7 @@ export default function Login() {
         return <Navigate to = "/TRABAJO-FULL-STACK-V2/app" />
     }
 
+
     return (
         <DefaultLayout>
             <form className="form">

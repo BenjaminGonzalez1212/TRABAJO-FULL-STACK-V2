@@ -2,31 +2,22 @@ import { useState } from "react";
 import DefaultLayout from "./layout/DefaultLayout";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "./auth/AuthProvider";
-import { createUser, saveUsers, getUsers } from "./data/Users";
 
 export default function Signup() {
-  const {name, setName} = useState("");
-  const {email, setEmail} = useState("");
-  const {password, setPassword} = useState("");
-  const {repeatPassword, setRepeatPassword} = useState("");
+    const { name, setName } = useState("");
+    const { email, setEmail } = useState("");
+    const { password, setPassword } = useState("");
+    const { repeatpassword, setRepeatPassword } = useState("");
 
-  const auth = useAuth();
+    const auth = useAuth();
 
-  if (auth.isAuthenticated) {
-    return <Navigate to="/TRABAJO-FULL-STACK-V2/app" />;
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    createUser({ name, email, password });
-    alert("Usuario creado con éxito");
-
-    // aca redirigir al login.. o directo a la pagina no se la verdad, se ve despues (acordarce)
-  };
+    if(auth.isAuthenticated) {
+        return <Navigate to = "/TRABAJO-FULL-STACK-V2/app" />
+    }
 
     return (
         <DefaultLayout>
-            <form className="form" onSubmit={handleSubmit}>
+            <form className="form">
                 <h1>SignUp</h1>
                 <label>Username</label>
                 <input
@@ -52,11 +43,11 @@ export default function Signup() {
                 <label>Repeat Password</label>
                 <input
                     type = 'password'
-                    value = {repeatPassword}
+                    value = {repeatpassword}
                     onChange = { (e) => setRepeatPassword(e.target.value)}
                 />
 
-                <button type="submit">SignUp</button>
+                <button>SignUp</button>
             </form>
         </DefaultLayout>
     );
