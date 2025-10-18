@@ -2,11 +2,12 @@ import { Navigate } from "react-router-dom";
 import DefaultLayout from "./layout/DefaultLayout";
 import { useState } from "react";
 import { useAuth } from "./auth/AuthProvider";
-import { createUser, getUsers } from "./data/Users";
+import { createUser, findUser, getUsers } from "./data/Users";
 
 export default function Login() {
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
+    const [error, setError] = useState("");
 
     const auth = useAuth();
 
@@ -17,19 +18,15 @@ export default function Login() {
     const handleSubmit = (e) => {
     e.preventDefault();
 
-    const users = getUsers();
-    const user = users.find(user => user.email === email && user.password === password)
+    const user = findUser(email, password)
 
-    //if (user) {
-    //    auth.Login(user);
-    //} else {
-    //    alert("email o contraseña incorrectos")
-    //}
-
-    //lo vamos a usar despues, que ahora no puedo elimiar usuarios (no hay admin)
-    
-    //createUser({ name, email, password });
-    //alert("Usuario creado con éxito");
+    if (user) {
+        auth.login(user);
+        setError("");
+        alter("sicion iniciada")
+    } else {
+        setError("email o contraseña incorrectos");
+    }
 
     // aca redirigir al login.. o directo a la pagina no se la verdad, se ve despues (acordarce)
   };
@@ -38,6 +35,9 @@ export default function Login() {
         <DefaultLayout>
             <form className="form" onSubmit={handleSubmit}>
                 <h1>Login</h1>
+
+                {error && <p style={{ color: "red" }}>{error}</p>}
+
                 <label>Email</label>
                 <input
                     type = 'email'

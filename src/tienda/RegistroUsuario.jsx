@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import DefaultLayout from "./layout/DefaultLayout";
 import { Navigate } from "react-router-dom";
@@ -10,6 +9,7 @@ export default function Signup() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [repeatPassword, setRepeatPassword] = useState("");
+    const [errorResponse, setErrorResponse] = useState("");
 
   const auth = useAuth();
 

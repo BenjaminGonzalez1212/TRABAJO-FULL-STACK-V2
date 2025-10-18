@@ -5,10 +5,31 @@ const AuthContext = createContext({
 });
 
 export function AuthProvider({ children }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    sessionStorage.getItem("isAuthenticated") === "true"
+  );
+
+  const [user, setUser] = useState (
+    JSON.parse(sessionStorage.getItem("user")) || null
+  );
+
+  const login = (userData) => {
+    setIsAuthenticated(true);
+    setUser(userData);
+    sessionStorage.setItem("isAuthenticated", "true");
+    sessionStorage.setItem("user", JSON.stringify(userData));
+  }
+
+  const logout = (userData) => {
+    setIsAuthenticated(false);
+    setUser(null);
+    sessionStorage.removeItem("isAuthenticated");
+    sessionStorage.removeItem("user")
+
+  }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated }}>
+    <AuthContext.Provider value={{ isAuthenticated, AuthContext, user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
