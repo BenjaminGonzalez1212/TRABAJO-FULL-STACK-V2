@@ -46,5 +46,3 @@ createRoot(document.getElementById('root')).render(
     </AuthProvider>
   </StrictMode>,
 )
-
-export const useAuth = () => useContext(AuthContext);

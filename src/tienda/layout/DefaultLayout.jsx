@@ -12,6 +12,9 @@ export default function DefaultLayout({ children }) {
             <li>
               <Link to="/TRABAJO-FULL-STACK-V2/signup">Signup</Link>
             </li>
+            <li>
+              <Link to="/TRABAJO-FULL-STACK-V2/login">Login</Link>
+            </li>
           </ul>
         </nav>
       </header>
