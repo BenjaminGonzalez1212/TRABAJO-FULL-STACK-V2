@@ -3,10 +3,38 @@ import "bootswatch/dist/journal/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap-icons/font/bootstrap-icons.css"; 
 import "./App.css";
+import { useAuth } from "./tienda/auth/AuthProvider";
 
 function App() {
+
+  const auth = useAuth();
+  let navContent;
+
+  if (auth.isAuthenticated === false) {
+    navContent = (
+      <>
+        <li className="nav-item"><a className="nav-link active" href="/TRABAJO-FULL-STACK-V2/login">Login</a></li>
+        <li className="nav-item"><a className="nav-link active" href="/TRABAJO-FULL-STACK-V2/signup">SignUp</a></li>
+      </>
+    )
+  } else {
+    navContent = (
+      <li className="nav-item">
+        <button
+          className="nav-link active"
+          onClick={(e) => {
+            e.preventDefault();
+            auth.logout();
+          }}>
+          Logout
+        </button>
+      </li>
+    )
+  }
+  
   return (
     <>
+
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <div className="container-fluid">
           <a className="navbar-brand fw-bold" href="#"> Pastelería Gamery</a>
@@ -38,16 +66,16 @@ function App() {
               </li>
 
               <li className="nav-item ms-3">
-                <a className="nav-link" href="/carrito" title="Ir al carrito">
+                <a className="nav-link" href="/TRABAJO-FULL-STACK-V2/carrito" title="Ir al carrito">
                   <i className="bi bi-cart-fill" style={{ fontSize: "1.5rem" }}></i>
                 </a>
               </li>
-            </ul>
 
-            <form className="d-flex">
-              <li className="nav-item"><a className="nav-link active" href="/TRABAJO-FULL-STACK-V2/login">Login</a></li>
-              <li className="nav-item"><a className="nav-link active" href="/TRABAJO-FULL-STACK-V2/signup">SignUp</a></li>
-            </form>
+              <nav className="navbar-nav ms-auto">
+                {navContent}
+              </nav>
+
+            </ul>
           </div>
         </div>
       </nav>
