@@ -1,6 +1,6 @@
 const USERS_KEY = "users";
 
-const getUsers = () => {
+export const getUsers = () => {
   const users = localStorage.getItem(USERS_KEY);
   return users ? JSON.parse(users) : [];
 };
