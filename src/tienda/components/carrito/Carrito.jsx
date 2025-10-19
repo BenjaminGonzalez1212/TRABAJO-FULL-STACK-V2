@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "bootswatch/dist/journal/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -9,6 +9,7 @@ import { productos } from "../../data/Products";
 export default function Carrito() {
   const [cart, setCart] = useState([]);
   const [totalCompras, setTotalCompras] = useState(0);
+  const navigate = useNavigate();
 
   // Cargar carrito desde localStorage al iniciar
   useEffect(() => {
@@ -53,6 +54,16 @@ export default function Carrito() {
 
   const deleteFromCart = (id) => setCart(prev => prev.filter(p => p.id !== id));
   const clearCart = () => setCart([]);
+
+  const handleComprar = () => {
+    if (cart.length === 0) {
+      alert(" Tu carrito está vacío. Agrega productos antes de comprar.");
+      return;
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    navigate("/TRABAJO-FULL-STACK-V2/comprar");
+  };
 
   return (
     <>
@@ -139,7 +150,7 @@ export default function Carrito() {
 
         <div className="text-end mt-3">
           <button className="btn btn-secondary btn-lg me-2" onClick={clearCart}>Limpiar</button>
-          <button className="btn btn-success btn-lg" onClick={() => { alert("Compra realizada con éxito!"); clearCart(); }}>Comprar ahora</button>
+          <button className="btn btn-success btn-lg" onClick={handleComprar}>Comprar ahora</button>
         </div>
       </main>
 
