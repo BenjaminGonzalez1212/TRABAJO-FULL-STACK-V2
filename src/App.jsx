@@ -37,7 +37,7 @@ function App() {
 
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <div className="container-fluid">
-          <a className="navbar-brand fw-bold" href="#"> Pastelería Gamery</a>
+          <a className="navbar-brand fw-bold" href="/TRABAJO-FULL-STACK-V2/app">Pastelería Gamery</a>
           <button
             className="navbar-toggler"
             type="button"
@@ -52,7 +52,7 @@ function App() {
 
           <div className="collapse navbar-collapse" id="navbarColor01">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item"><a className="nav-link active" href="#">Inicio</a></li>
+              <li className="nav-item"><a className="nav-link active" href="/TRABAJO-FULL-STACK-V2/app">Inicio</a></li>
               <li className="nav-item"><a className="nav-link" href="#">Productos</a></li>
               <li className="nav-item"><a className="nav-link" href="#">Contacto</a></li>
               <li className="nav-item dropdown">
@@ -64,18 +64,14 @@ function App() {
                   <a className="dropdown-item" href="#">Ayuda</a>
                 </div>
               </li>
-
               <li className="nav-item ms-3">
                 <a className="nav-link" href="/TRABAJO-FULL-STACK-V2/carrito" title="Ir al carrito">
                   <i className="bi bi-cart-fill" style={{ fontSize: "1.5rem" }}></i>
                 </a>
               </li>
-
-              <nav className="navbar-nav ms-auto">
-                {navContent}
-              </nav>
-
             </ul>
+
+            <ul className="navbar-nav ms-auto">{navContent}</ul>
           </div>
         </div>
       </nav>
