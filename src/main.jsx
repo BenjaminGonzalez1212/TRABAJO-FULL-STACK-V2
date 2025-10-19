@@ -9,6 +9,7 @@ import Dashboard from './tienda/DashBoard.jsx'
 import Carrito from './tienda/components/carrito/Carrito.jsx';
 import Comprar from './tienda/components/comprar/Comprar.jsx'
 import Blogs from './tienda/blogs/Blogs.jsx'
+import DetalleBlogs from './tienda/blogs/DetalleBlogs.jsx'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ProtectedRoute from './tienda/ProtectedRoute.jsx'
@@ -54,6 +55,16 @@ const router = createBrowserRouter([
   {
     path: "/TRABAJO-FULL-STACK-V2/blogs",
     element: <Blogs />,
+  },
+
+  {
+    path: "/TRABAJO-FULL-STACK-V2/detalleblogs",
+    element: <DetalleBlogs />,
+  },
+
+  {
+    path: "/TRABAJO-FULL-STACK-V2/blogs/:id",
+    element: <DetalleBlogs />,
   },
 ])
 

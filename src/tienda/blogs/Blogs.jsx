@@ -103,7 +103,9 @@ export default function Blogs() {
                   <small className="text-muted">{blog.description}</small>
                 </p>
 
-                <button className="btn btn-primary btn-sm">Ver más</button>
+                <a href = {`/TRABAJO-FULL-STACK-V2/blogs/${blog.id}`}>
+                  <button className="btn btn-primary">Ver más</button>
+                </a>
               </div>
             </div>
           ))}
