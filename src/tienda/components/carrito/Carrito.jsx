@@ -69,7 +69,7 @@ export default function Carrito() {
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">Pastelería Gamery</Link>
+          <Link className="navbar-brand" to="/TRABAJO-FULL-STACK-V2/app">Pastelería Gamery</Link>
           <div className="d-flex">
             <Link className="btn btn-primary ms-2" to="/TRABAJO-FULL-STACK-V2/app">Volver</Link>
           </div>

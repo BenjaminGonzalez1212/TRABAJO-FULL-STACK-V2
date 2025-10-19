@@ -33,27 +33,33 @@ export default function Login() {
 
     return (
         <DefaultLayout>
-            <form className="form" onSubmit={handleSubmit}>
-                <h1>Login</h1>
+            <div className="signup-card">
+                <form className="form" onSubmit={handleSubmit}>
+                    <h1>Iniciar sesion</h1>
 
-                {error && <p style={{ color: "red" }}>{error}</p>}
+                    {error && <p style={{ color: "red" }}>{error}</p>}
 
-                <label>Email</label>
-                <input
-                    type = 'email'
-                    value = {email}
-                    onChange = { (e) => setEmail(e.target.value)}
-                />
+                    <label>Email</label>
+                    <input
+                        type = 'email'
+                        value = {email}
+                        onChange = { (e) => setEmail(e.target.value)}
+                    />
 
-                <label>Password</label>
-                <input
-                    type = 'password'
-                    value = {password}
-                    onChange = { (e) => setPassword(e.target.value)}
-                />
+                    <label>Contraseña</label>
+                    <input
+                        type = 'password'
+                        value = {password}
+                        onChange = { (e) => setPassword(e.target.value)}
+                    />
 
-                <button type="submit">Login</button>
-            </form>
+                    <button type="submit">Iniciar sesion</button>
+
+                    <footer>
+                        2025 Pastelería Gamery
+                    </footer>
+                </form>
+            </div>
         </DefaultLayout>
     );
 }

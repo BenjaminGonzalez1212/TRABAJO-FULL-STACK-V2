@@ -34,10 +34,9 @@ function App() {
   
   return (
     <>
-
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <div className="container-fluid">
-          <a className="navbar-brand fw-bold" href="/TRABAJO-FULL-STACK-V2/app">Pastelería Gamery</a>
+          <a className="navbar-brand" href="#">Pastelería Gamery</a>
           <button
             className="navbar-toggler"
             type="button"
@@ -52,8 +51,8 @@ function App() {
 
           <div className="collapse navbar-collapse" id="navbarColor01">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item"><a className="nav-link active" href="/TRABAJO-FULL-STACK-V2/app">Inicio</a></li>
-              <li className="nav-item"><a className="nav-link" href="#">Productos</a></li>
+              <li className="nav-item"><a className="nav-link active" href="#">Inicio</a></li>
+              <li className="nav-item"><a className="nav-link active" href="/TRABAJO-FULL-STACK-V2/carrito">Productos</a></li>
               <li className="nav-item"><a className="nav-link" href="#">Contacto</a></li>
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Más</a>
@@ -70,18 +69,19 @@ function App() {
                 </a>
               </li>
             </ul>
-
             <ul className="navbar-nav ms-auto">{navContent}</ul>
           </div>
         </div>
       </nav>
-
       <main className="container-fluid text-center py-5 bg-light flex-grow-1">
         <h1 className="display-4 mb-3 fw-bold text-primary">Bienvenido a Pastelería Gamery</h1>
         <p className="lead">
           ¡Sube de nivel con nuestros pasteles inspirados en tus videojuegos favoritos!
         </p>
-        <button className="btn btn-primary btn-lg mt-3">Explorar productos</button>
+
+        <a href="/TRABAJO-FULL-STACK-V2/carrito">
+          <button className="btn btn-primary btn-lg mt-3">Explorar productos</button>
+        </a>
       </main>
 
       <footer className="bg-primary text-white text-center py-3 mt-auto">
