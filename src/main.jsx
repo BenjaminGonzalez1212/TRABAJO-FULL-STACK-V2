@@ -7,6 +7,7 @@ import Login from './tienda/IniciarSecion.jsx'
 import Signup from './tienda/RegistroUsuario.jsx'
 import Dashboard from './tienda/DashBoard.jsx'
 import Carrito from './tienda/components/carrito/Carrito.jsx';
+import Blogs from './tienda/blogs/Blogs.jsx'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ProtectedRoute from './tienda/ProtectedRoute.jsx'
@@ -42,6 +43,11 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
     ],
+  },
+
+  {
+    path: "/TRABAJO-FULL-STACK-V2/blogs",
+    element: <Blogs />,
   },
 ])
 

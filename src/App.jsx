@@ -58,7 +58,7 @@ function App() {
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Más</a>
                 <div className="dropdown-menu">
-                  <a className="dropdown-item" href="#">Nosotros</a>
+                  <a className="dropdown-item" href="/TRABAJO-FULL-STACK-V2/blogs">Blog</a>
                   <a className="dropdown-item" href="#">Ubicación</a>
                   <div className="dropdown-divider"></div>
                   <a className="dropdown-item" href="#">Ayuda</a>
