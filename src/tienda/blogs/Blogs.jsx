@@ -51,14 +51,13 @@ export default function Blogs() {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item"><a className="nav-link active" href="/TRABAJO-FULL-STACK-V2/app">Inicio</a></li>
               <li className="nav-item"><a className="nav-link active" href="/TRABAJO-FULL-STACK-V2/carrito">Productos</a></li>
-              <li className="nav-item"><a className="nav-link" href="#">Contacto</a></li>
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Más</a>
                 <div className="dropdown-menu">
                   <a className="dropdown-item" href="#">Blog</a>
                   <a className="dropdown-item" href="#">Ubicación</a>
                   <div className="dropdown-divider"></div>
-                  <a className="dropdown-item" href="#">Ayuda</a>
+                  <a className="dropdown-item" href="#">Administrador</a>
                 </div>
               </li>
               <li className="nav-item ms-3">
