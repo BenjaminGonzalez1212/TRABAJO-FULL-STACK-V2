@@ -6,6 +6,7 @@ import App from './App.jsx'
 import Login from './tienda/IniciarSecion.jsx'
 import Signup from './tienda/RegistroUsuario.jsx'
 import Dashboard from './tienda/DashBoard.jsx'
+import Carrito from './tienda/components/carrito/Carrito.jsx';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ProtectedRoute from './tienda/ProtectedRoute.jsx'
@@ -25,6 +26,11 @@ const router = createBrowserRouter([
   {
     path: "/TRABAJO-FULL-STACK-V2/signup",
     element: <Signup />,
+  },
+
+  {
+    path: "/TRABAJO-FULL-STACK-V2/carrito",
+    element: <Carrito />,
   },
 
   {

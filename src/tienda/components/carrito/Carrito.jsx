@@ -1,0 +1,150 @@
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "bootswatch/dist/journal/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "./Carrito.css";
+import { productos } from "../../data/Products";
+
+export default function Carrito() {
+  const [cart, setCart] = useState([]);
+  const [totalCompras, setTotalCompras] = useState(0);
+
+  // Cargar carrito desde localStorage al iniciar
+  useEffect(() => {
+    const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    setCart(savedCart);
+  }, []);
+
+  // Guardar carrito en localStorage y calcular total
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    const total = cart.reduce((sum, item) => sum + item.precio_nuevo * item.quantity, 0);
+    setTotalCompras(total);
+  }, [cart]);
+
+  // Función para agregar producto al carrito
+  const addToCart = (producto) => {
+    setCart(prev => {
+      const existing = prev.find(p => p.id === producto.id);
+      if (existing) {
+        if (existing.quantity >= producto.stock) {
+          alert(`No puedes añadir más de ${producto.stock} unidades.`);
+          return prev;
+        }
+        return prev.map(p => p.id === producto.id ? { ...p, quantity: p.quantity + 1 } : p);
+      } else {
+        return [...prev, { ...producto, quantity: 1 }];
+      }
+    });
+  };
+
+  // Cambiar cantidad en el carrito
+  const changeQuantity = (id, delta) => {
+    setCart(prev =>
+      prev
+        .map(p => p.id === id
+          ? { ...p, quantity: Math.max(1, Math.min(p.quantity + delta, productos.find(pr => pr.id === id).stock)) }
+          : p
+        )
+        .filter(p => p.quantity > 0)
+    );
+  };
+
+  const deleteFromCart = (id) => setCart(prev => prev.filter(p => p.id !== id));
+  const clearCart = () => setCart([]);
+
+  return (
+    <>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div className="container-fluid">
+          <Link className="navbar-brand" to="/">Pastelería Gamery</Link>
+          <div className="d-flex">
+            <Link className="btn btn-primary ms-2" to="/TRABAJO-FULL-STACK-V2/app">Volver</Link>
+          </div>
+        </div>
+      </nav>
+
+      <main className="container py-5">
+        <h2 className="mb-4">Productos</h2>
+        <div className="row mb-5">
+          {productos.map(producto => (
+            <div key={producto.id} className="col-md-3 mb-3">
+              <div className="card card-producto h-100">
+                <img 
+                  src={producto.imagen} 
+                  alt={producto.nombre} 
+                  className="card-img-top"
+                  style={{ width: "700px", height: "350px", objectFit: "cover" }}
+                />
+                <div className="card-body d-flex flex-column">
+                  <h5 className="card-title">{producto.nombre}</h5>
+                  <p className="card-text text-muted">{producto.categoria}</p>
+                  <div className="mt-auto">
+                    <span className="text-decoration-line-through">${producto.precio_descuento}</span>{" "}
+                    <span className="fw-bold">${producto.precio_nuevo}</span>
+                    <div className="d-grid mt-2">
+                      <button className="btn btn-dark" onClick={() => addToCart(producto)}>Añadir</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <h2>Carrito de Compras</h2>
+        <div className="table-responsive">
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cart.map(item => (
+                <tr key={item.id}>
+                  <td>
+                    <img 
+                      src={item.imagen} 
+                      alt={item.nombre} 
+                      style={{ width: "100px", height: "60px", objectFit: "cover" }}
+                    />
+                  </td>
+                  <td>{item.nombre}</td>
+                  <td>${item.precio_nuevo}</td>
+                  <td>
+                    <div className="d-flex align-items-center">
+                      <button className="btn btn-outline-secondary btn-sm" onClick={() => changeQuantity(item.id, -1)} disabled={item.quantity <= 1}>-</button>
+                      <span className="mx-2">{item.quantity}</span>
+                      <button className="btn btn-outline-secondary btn-sm" onClick={() => changeQuantity(item.id, 1)} disabled={item.quantity >= item.stock}>+</button>
+                    </div>
+                  </td>
+                  <td>${item.precio_nuevo * item.quantity}</td>
+                  <td><button className="btn btn-danger btn-sm" onClick={() => deleteFromCart(item.id)}>Eliminar</button></td>
+                </tr>
+              ))}
+              <tr>
+                <td colSpan="4" className="text-end fw-bold">Total</td>
+                <td colSpan="2" className="fw-bold">${totalCompras}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div className="text-end mt-3">
+          <button className="btn btn-secondary btn-lg me-2" onClick={clearCart}>Limpiar</button>
+          <button className="btn btn-success btn-lg" onClick={() => { alert("Compra realizada con éxito!"); clearCart(); }}>Comprar ahora</button>
+        </div>
+      </main>
+
+      <footer className="bg-dark text-light text-center py-3 mt-5">&copy; 2025 Pastelería Gamery</footer>
+    </>
+  );
+}
+
