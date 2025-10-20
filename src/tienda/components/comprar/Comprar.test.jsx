@@ -54,6 +54,17 @@ describe('Formulario Comprar - Nombre', () => {
     expect(nombreInput.value).toBe('Pedro');
   });
 
+  it('No acepta Numeros decimales en el input nombre', async() => {
+      render(
+        <MemoryRouter>
+          <Comprar />
+        </MemoryRouter>
+      );
+    const nombreInput = screen.getByLabelText(/nombre \*/i);
+    await userEvent.type(nombreInput,'Pedro123.45')
+    expect(nombreInput.value).not.toMatch(/\d+\.\d+/);
+  });
+
   it('No acepta números en el input "Nombre"', async () => {
     render(
       <MemoryRouter>
