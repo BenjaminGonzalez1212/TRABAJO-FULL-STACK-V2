@@ -10,6 +10,10 @@ import Carrito from './tienda/components/carrito/Carrito.jsx';
 import Comprar from './tienda/components/comprar/Comprar.jsx'
 import Blogs from './tienda/blogs/Blogs.jsx'
 import DetalleBlogs from './tienda/blogs/DetalleBlogs.jsx'
+import Administrador from './administrador/administrador.jsx'
+import LoginAdmin from './administrador/LogInAdmin.jsx'
+import ProtectedRouteAdmin from './tienda/auth/ProtectedRouteAdmin.jsx'
+import SignupAdmin from './administrador/SignUpAdmin.jsx'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ProtectedRoute from './tienda/ProtectedRoute.jsx'
@@ -65,6 +69,27 @@ const router = createBrowserRouter([
   {
     path: "/TRABAJO-FULL-STACK-V2/blogs/:id",
     element: <DetalleBlogs />,
+  },
+  
+  {
+    path: "/TRABAJO-FULL-STACK-V2/administrador",
+    element: <ProtectedRouteAdmin />,
+    children: [
+      {
+        path: "/TRABAJO-FULL-STACK-V2/administrador/inicio",
+        element: <Administrador />,
+      },
+    ],
+  },
+
+  {
+    path: "/TRABAJO-FULL-STACK-V2/administrador/loginadmin",
+    element: <LoginAdmin />,
+  },
+
+    {
+    path: "/TRABAJO-FULL-STACK-V2/administrador/signupadmin",
+    element: <SignupAdmin />,
   },
 ])
 

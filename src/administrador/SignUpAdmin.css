@@ -1,13 +1,4 @@
-.signup-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-    padding: 20px;
-}
-
-.signup-card {
+.login-admin-card {
     background: white;
     padding: 40px 50px;
     border-radius: 16px;
@@ -17,13 +8,13 @@
     text-align: center;
 }
 
-.signup-card h1 {
-    color: #eb6864;
+.login-admin-card h1 {
+    color: #bd302c;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
-.signup-card label {
+.login-admin-card label {
     display: block;
     text-align: left;
     margin-top: 15px;
@@ -31,7 +22,7 @@
     color: #333;
 }
 
-.signup-card input {
+.login-admin-card input {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -40,30 +31,39 @@
     transition: border 0.2s;
 }
 
-.signup-card input:focus {
-    border-color: #eb6864;
+.login-admin-card input:focus {
+    border-color: #bd302c;
     outline: none;
 }
 
-.signup-card button {
+.login-admin-card button {
     margin-top: 40px;
     width: 100%;
-    background-color: #eb6864;
+    background-color: #bd302c;
     border: none;
     color: white;
     padding: 12px;
     border-radius: 8px;
     font-weight: bold;
+    cursor: pointer;
     transition: background-color 0.3s;
 }
 
-.signup-card footer {
-    margin-bottom: 0%;
+.login-admin-card button:hover {
+    background-color: #bd302c;
+}
+
+.login-admin-card .error-message {
+    color: red;
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+.login-admin-card footer {
+    margin-top: 30px;
     background-color: #ffffff;
-    color: rgb(0, 0, 0);
+    color: #333;
     text-align: center;
     padding: 5px 0;
     width: 100%;
-    position: relative;
-    bottom: 0;
 }

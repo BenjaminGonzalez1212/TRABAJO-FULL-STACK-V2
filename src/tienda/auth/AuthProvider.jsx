@@ -9,7 +9,7 @@ export function AuthProvider({ children }) {
     sessionStorage.getItem("isAuthenticated") === "true"
   );
 
-  const [user, setUser] = useState (
+  const [user, setUser] = useState(
     JSON.parse(sessionStorage.getItem("user")) || null
   );
 
@@ -18,18 +18,17 @@ export function AuthProvider({ children }) {
     setUser(userData);
     sessionStorage.setItem("isAuthenticated", "true");
     sessionStorage.setItem("user", JSON.stringify(userData));
-  }
+  };
 
-  const logout = (userData) => {
+  const logout = () => {
     setIsAuthenticated(false);
     setUser(null);
     sessionStorage.removeItem("isAuthenticated");
-    sessionStorage.removeItem("user")
-
-  }
+    sessionStorage.removeItem("user");
+  };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, AuthContext, user, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

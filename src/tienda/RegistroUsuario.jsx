@@ -1,9 +1,9 @@
 import { useState } from "react";
 import DefaultLayout from "./layout/DefaultLayout";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "./auth/AuthProvider";
 import { createUser, getUsers } from "./data/Users";
-import "./RegistroUsuarios.css";
+import "./RegistroUsuarios.css"; 
 
 export default function Signup() {
 	const [name, setName] = useState("");
@@ -12,18 +12,29 @@ export default function Signup() {
 	const [repeatPassword, setRepeatPassword] = useState("");
     const [errorResponse, setErrorResponse] = useState("");
 
-    const auth = useAuth();
+  const auth = useAuth();
+  const navigate = useNavigate();
 
-    if (auth.isAuthenticated) {
-        return <Navigate to="/TRABAJO-FULL-STACK-V2/app" />;
-    }
+  if (auth.isAuthenticated) {
+    return <Navigate to="/TRABAJO-FULL-STACK-V2/app" />;
+  }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        createUser({ name, email, password });
-        alert("Usuario creado con éxito");
 
-        // aca redirigir al login una vez el usuario sea correctamente creado.. o directo a la pagina no se la verdad, se ve despues (acordarce)
+        if (!name || !email || !password || !repeatPassword) {
+        setErrorResponse("Por favor completar todos los campos.");
+        return;
+        }
+
+        if (password !== repeatPassword) {
+        setErrorResponse("Las contraseñas no coinciden.");
+        return;
+        }
+
+        createAdmin({ name, email, password });
+        alert("Administrador creado con exito.");
+        navigate("/TRABAJO-FULL-STACK-V2/administrador/loginadmin");
     };
 
     return (

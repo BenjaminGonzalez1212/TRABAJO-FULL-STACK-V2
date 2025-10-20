@@ -51,7 +51,7 @@ function App() {
 
           <div className="collapse navbar-collapse" id="navbarColor01">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item"><a className="nav-link active" href="#">Inicio</a></li>
+              <li className="nav-item"><a className="nav-link" href="#">Inicio</a></li>
               <li className="nav-item"><a className="nav-link active" href="/TRABAJO-FULL-STACK-V2/carrito">Productos</a></li>
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Más</a>
@@ -59,7 +59,7 @@ function App() {
                   <a className="dropdown-item" href="/TRABAJO-FULL-STACK-V2/blogs">Blog</a>
                   <a className="dropdown-item" href="#">Ubicación</a>
                   <div className="dropdown-divider"></div>
-                  <a className="dropdown-item" href="#">Administrador</a>
+                  <a className="dropdown-item" href="/TRABAJO-FULL-STACK-V2/administrador/inicio">Administrador</a>
                 </div>
               </li>
               <li className="nav-item ms-3">

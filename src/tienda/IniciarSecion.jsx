@@ -12,7 +12,7 @@ export default function Login() {
     const auth = useAuth();
 
     if(auth.isAuthenticated) {
-        return <Navigate to = "/TRABAJO-FULL-STACK-V2/app" />
+        return <Navigate to = "/TRABAJO-FULL-STACK-V2/app" /> 
     }
 
     const handleSubmit = (e) => {
@@ -23,12 +23,11 @@ export default function Login() {
     if (user) {
         auth.login(user);
         setError("");
-        alter("sicion iniciada")
+        alter("Sesion iniciada")
     } else {
-        setError("email o contraseña incorrectos");
+        setError("Email o contraseña incorrectos");
     }
-
-    // aca redirigir al login.. o directo a la pagina no se la verdad, se ve despues (acordarce)
+    
   };
 
     return (

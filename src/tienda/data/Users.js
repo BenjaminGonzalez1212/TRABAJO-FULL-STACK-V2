@@ -20,4 +20,4 @@ export const findUser = (email, password) => {
     return users.find((u) => u.email === email && u.password === password);
 };
 
-//cuando admin este en desarrollo, añadir eliminar por.. correo y usuario? supongo o solo por correo, y tambier buscar usuario
+//cuando admin este en desarrollo, añadir eliminar por.. correo y usuario? supongo o solo por correo, y tambier buscar usuario 
