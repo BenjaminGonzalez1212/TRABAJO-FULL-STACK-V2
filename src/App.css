@@ -1,46 +1,96 @@
-/* Toda la app ocupa el 100% de la pantalla */
 html, body, #root {
   height: 100%;
   margin: 0;
   padding: 0;
   width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Layout principal en columna */
 #root {
-  display: flex;           /* Flex container vertical */
-  flex-direction: column;  /* Navbar, main y footer en columna */
-  min-height: 100vh;       /* Ocupa toda la altura de la ventana */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-/* Navbar ocupa su espacio normal */
 nav.navbar {
   width: 100%;
 }
 
-/* Main se expande para ocupar el espacio restante */
 main {
-  flex: 1; /* Hace que main empuje el footer hacia abajo */
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centra verticalmente el contenido */
-  align-items: center;     /* Centra horizontalmente el contenido */
+  justify-content: center;
+  align-items: center;
   text-align: center;
   padding: 2rem;
-  background-color: #f8f9fa; /* Fondo del tema Journal */
+  background-color: #f8f9fa;
 }
 
-/* Footer siempre al final */
 footer {
   width: 100%;
-  background-color: #0d6efd; /* Azul del tema Bootswatch Journal */
+  background-color: #eb6864;
   color: white;
   text-align: center;
   padding: 1rem;
-  margin-top: auto; /* Empuja el footer al final */
+  margin-top: auto;
 }
 
-/* Efecto hover en enlaces del navbar */
 .nav-link:hover {
   text-decoration: underline;
+}
+
+.card {
+  border: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-img-top {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  object-position: center;
+  border-bottom: 3px solid #eb6864;
+}
+
+.card-body {
+  text-align: left;
+  background-color: #ffffff;
+  padding: 1.25rem;
+}
+
+.card-title {
+  font-weight: 600;
+  color: #eb6864;
+}
+
+.card-text {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+h2.text-primary {
+  font-size: 2rem;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  main {
+    padding: 1.5rem;
+  }
+
+  .card-img-top {
+    height: 200px;
+  }
+
+  h2.text-primary {
+    font-size: 1.6rem;
+  }
 }

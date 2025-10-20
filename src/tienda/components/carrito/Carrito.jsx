@@ -17,14 +17,12 @@ export default function Carrito() {
     setCart(savedCart);
   }, []);
 
-  // Guardar carrito en localStorage y calcular total
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
     const total = cart.reduce((sum, item) => sum + item.precio_nuevo * item.quantity, 0);
     setTotalCompras(total);
   }, [cart]);
 
-  // Función para agregar producto al carrito
   const addToCart = (producto) => {
     setCart(prev => {
       const existing = prev.find(p => p.id === producto.id);
@@ -40,7 +38,6 @@ export default function Carrito() {
     });
   };
 
-  // Cambiar cantidad en el carrito
   const changeQuantity = (id, delta) => {
     setCart(prev =>
       prev
