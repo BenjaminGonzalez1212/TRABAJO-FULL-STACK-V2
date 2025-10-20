@@ -145,17 +145,31 @@ export default function Comprar() {
                   <input type="text" className="form-control" required />
                 </div>
                 <div className="col-md-6 mb-3">
-                  <label className="form-label">Correo *</label>
-                  <input type="email" className="form-control" required />
-                </div>
+                  <label className="form-label" htmlFor="correo">
+                    Correo *
+                  </label>
+                  <input
+                    id="correo"
+                    className="form-control"
+                    required
+                    type="email"
+                  />
+              </div>
               </div>
 
               <h4 className="mt-4">Dirección de entrega</h4>
               <div className="row mt-3">
-                <div className="col-md-6 mb-3">
-                  <label className="form-label">Calle *</label>
-                  <input type="text" className="form-control" required />
-                </div>
+              <div className="col-md-6 mb-3">
+                <label className="form-label" htmlFor="calle">
+                  Calle *
+                </label>
+                <input
+                  id="calle"
+                  className="form-control"
+                  required
+                  type="text"
+                />
+              </div>
                 <div className="col-md-6 mb-3">
                   <label className="form-label">Departamento (opcional)</label>
                   <input type="text" className="form-control" placeholder="Ej: 603" />
@@ -195,7 +209,7 @@ export default function Comprar() {
                   <textarea
                     className="form-control"
                     rows="3"
-                    placeholder="Ej.: Entre calles, color del edificio..."S
+                    placeholder="Ej.: Entre calles, color del edificio..."
                   ></textarea>
                 </div>
               </div>
