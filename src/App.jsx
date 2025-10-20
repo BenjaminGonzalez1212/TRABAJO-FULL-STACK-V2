@@ -117,6 +117,10 @@ function App() {
                 <p className="card-text">
                   Torta de frambuesa manjar de Super Mario Bros con diseño de overol hecho en fondant
                 </p>
+
+                <a className="button" href="/TRABAJO-FULL-STACK-V2/carrito">
+                  <button className="btn btn-primary">Ver más</button>
+                </a>
               </div>
             </div>
           </div>
@@ -133,6 +137,10 @@ function App() {
                 <p className="card-text">
                   Torta tres leches de The Legend of Zelda Ocarina Of Time con exterior de fondant
                 </p>
+                
+                <a className="button" href="/TRABAJO-FULL-STACK-V2/carrito">
+                  <button className="btn btn-primary">Ver más</button>
+                </a>
               </div>
             </div>
           </div>
@@ -149,6 +157,10 @@ function App() {
                 <p className="card-text">
                   Torta de mermelada de frambuesa de Minecraft, tal y como se ve en el juego con un diseño hecho en fondant
                 </p>
+
+                <a className="button" href="/TRABAJO-FULL-STACK-V2/carrito">
+                  <button className="btn btn-primary">Ver más</button>
+                </a>
               </div>
             </div>
           </div>

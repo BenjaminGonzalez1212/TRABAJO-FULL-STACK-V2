@@ -161,8 +161,22 @@
 }
 
 .admin-footer {
+  
   text-align: center;
   margin-top: 60px;
   color: #666;
   font-size: 0.9rem;
+}
+
+.blue-card {
+  background: linear-gradient(135deg, #007bff, #4da3ff);
+  color: white;
+}
+.green-card {
+  background: linear-gradient(135deg, #28a745, #66d47e);
+  color: white;
+}
+.yellow-card {
+  background: linear-gradient(135deg, #ffc107, #ffd85c);
+  color: #333;
 }

@@ -40,26 +40,47 @@ export default function Administrador() {
         </header>
 
         <section className="admin-top-sections">
-          <div className="admin-big-card">Compras</div>
-          <div className="admin-big-card">Productos</div>
-          <div className="admin-big-card">Usuarios Registrados</div>
+          <div className="admin-big-card blue-card">
+            <span>Compras</span>
+          </div>
+          <div className="admin-big-card green-card">
+            <span>Productos</span>
+          </div>
+          <div className="admin-big-card yellow-card">
+            <span>Usuarios Registrados</span>
+          </div>
         </section>
 
         <section className="admin-small-cards">
-          <div className="admin-card">Dashboard</div>
-          <div className="admin-card">Órdenes</div>
-          <div className="admin-card">Productos</div>
-          <div className="admin-card">Categorías</div>
-
-          <div className="admin-card">Usuarios</div>
-          <div className="admin-card">Reportes</div>
-          <div className="admin-card">Perfil</div>
-          <div className="admin-card">Tienda</div>
+          <div className="admin-card">
+            <span>Dashboard</span>
+          </div>
+          <div className="admin-card">
+            <span>Órdenes</span>
+          </div>
+          <div className="admin-card">
+            <span>Productos</span>
+          </div>
+          <div className="admin-card">
+            <span>Categorías</span>
+          </div>
+          <div className="admin-card">
+            <span>Usuarios</span>
+          </div>
+          <div className="admin-card">
+            <span>Reportes</span>
+          </div>
+          <div className="admin-card">
+            <span>Perfil</span>
+          </div>
+          <div className="admin-card">
+            <span>Tienda</span>
+          </div>
         </section>
 
-        <footer className="admin-footer">
-          © 2025 Pastelería Gamery — Panel de Administración
-        </footer>
+        <div className="text-center mt-3 border-top border-light pt-3">
+          2025 Pastelería Gamery
+        </div>
       </main>
     </div>
   );
