@@ -31,7 +31,6 @@ export default function Blogs() {
 
   return (
     <>
-
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <div className="container-fluid">
           <a className="navbar-brand" href="/TRABAJO-FULL-STACK-V2/app">Pastelería Gamery</a>
@@ -49,21 +48,27 @@ export default function Blogs() {
 
           <div className="collapse navbar-collapse" id="navbarColor01">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item"><a className="nav-link active" href="/TRABAJO-FULL-STACK-V2/app">Inicio</a></li>
-              <li className="nav-item"><a className="nav-link active" href="/TRABAJO-FULL-STACK-V2/carrito">Productos</a></li>
+              <li className="nav-item">
+                <a className="nav-link active" href="/TRABAJO-FULL-STACK-V2/app">Inicio</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link active" href="/TRABAJO-FULL-STACK-V2/carrito">Productos</a>
+              </li>
               <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Más</a>
+                <a
+                  className="nav-link dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  href="#"
+                  role="button"
+                  aria-expanded="false"
+                >
+                  Más
+                </a>
                 <div className="dropdown-menu">
                   <a className="dropdown-item" href="#">Blog</a>
-                  <a className="dropdown-item" href="#">Ubicación</a>
                   <div className="dropdown-divider"></div>
-                  <a className="dropdown-item" href="#">Administrador</a>
+                  <a className="dropdown-item" href="/TRABAJO-FULL-STACK-V2/administrador/inicio">Administrador</a>
                 </div>
-              </li>
-              <li className="nav-item ms-3">
-                <a className="nav-link" href="/TRABAJO-FULL-STACK-V2/carrito" title="Ir al carrito">
-                  <i className="bi bi-cart-fill" style={{ fontSize: "1.5rem" }}></i>
-                </a>
               </li>
             </ul>
             <ul className="navbar-nav ms-auto">{navContent}</ul>

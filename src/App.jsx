@@ -36,7 +36,7 @@ function App() {
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <div className="container-fluid">
-          <a className="navbar-brand fw-bold" href="#">Pastelería Gamery</a>
+          <a className="navbar-brand" href="#">Pastelería Gamery</a>
           <button
             className="navbar-toggler"
             type="button"
@@ -69,7 +69,6 @@ function App() {
                 </a>
                 <div className="dropdown-menu">
                   <a className="dropdown-item" href="/TRABAJO-FULL-STACK-V2/blogs">Blog</a>
-                  <a className="dropdown-item" href="#">Ubicación</a>
                   <div className="dropdown-divider"></div>
                   <a className="dropdown-item" href="/TRABAJO-FULL-STACK-V2/administrador/inicio">Administrador</a>
                 </div>
