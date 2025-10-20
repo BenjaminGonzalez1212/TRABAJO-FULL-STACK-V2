@@ -10,7 +10,6 @@ export default function Signup() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [repeatPassword, setRepeatPassword] = useState("");
-    const [errorResponse, setErrorResponse] = useState("");
 
   const auth = useAuth();
   const navigate = useNavigate();
@@ -23,18 +22,18 @@ export default function Signup() {
         e.preventDefault();
 
         if (!name || !email || !password || !repeatPassword) {
-        setErrorResponse("Por favor completar todos los campos.");
+        alert("Por favor completar todos los campos.");
         return;
         }
 
         if (password !== repeatPassword) {
-        setErrorResponse("Las contraseñas no coinciden.");
+        alert("Las contraseñas no coinciden.");
         return;
         }
 
-        createAdmin({ name, email, password });
-        alert("Administrador creado con exito.");
-        navigate("/TRABAJO-FULL-STACK-V2/administrador/loginadmin");
+        createUser({ name, email, password });
+        alert("Usuario creado con exito.");
+        navigate("/TRABAJO-FULL-STACK-V2/login");
     };
 
     return (
