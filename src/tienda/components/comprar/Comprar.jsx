@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootswatch/dist/journal/bootstrap.min.css";
 
@@ -10,6 +10,8 @@ export default function Comprar() {
   const [regionSeleccionada, setRegionSeleccionada] = useState("");
   const [comunasFiltradas, setComunasFiltradas] = useState([]);
   const navigate = useNavigate();
+
+  const [nombre, setNombre] = useState('');
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -128,9 +130,16 @@ export default function Comprar() {
               <h4 className="mt-4">Información del cliente</h4>
               <div className="row mt-3">
                 <div className="col-md-6 mb-3">
-                  <label className="form-label">Nombre *</label>
-                  <input type="text" className="form-control" required />
-                </div>
+                <label htmlFor="nombre" className="form-label">Nombre *</label>
+                    <input
+                      id="nombre"
+                      type="text"
+                      className="form-control"
+                      value={nombre}
+                      onChange={(e) => setNombre(e.target.value.replace(/[0-9]/g, ''))}
+                      required
+                    />
+              </div>
                 <div className="col-md-6 mb-3">
                   <label className="form-label">Apellidos *</label>
                   <input type="text" className="form-control" required />
