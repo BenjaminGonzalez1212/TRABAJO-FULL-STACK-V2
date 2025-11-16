@@ -9,9 +9,63 @@ export default function Comprar() {
   const [comunas, setComunas] = useState([]);
   const [regionSeleccionada, setRegionSeleccionada] = useState("");
   const [comunasFiltradas, setComunasFiltradas] = useState([]);
+  const [calle, setCalle] = useState('');
+  const [departamento, setDepartamento] = useState('');
+  const [comunaSeleccionada, setComunaSeleccionada] = useState('');
+  const [indicaciones, setIndicaciones] = useState('');
   const navigate = useNavigate();
 
   const [nombre, setNombre] = useState('');
+  const [apellidos, setApellidos] = useState('');
+  const [correo, setCorreo] = useState('');
+  const [errors, setErrors] = useState({});
+
+  const validarFormulario = () => {
+  const newErrors = {};
+
+  if (!nombre.trim()) {
+    newErrors.nombre = "El nombre es obligatorio.";
+  } else if (!/^[A-Za-zÁÉÍÓÚÑáéíóúñ ]+$/.test(nombre)) {
+    newErrors.nombre = "Solo se permiten letras.";
+  }
+
+  if (!apellidos.trim()) {
+    newErrors.apellidos = "Los apellidos son obligatorios.";
+  } else if (!/^[A-Za-zÁÉÍÓÚÑáéíóúñ ]+$/.test(apellidos)) {
+    newErrors.apellidos = "Solo se permiten letras.";
+  }
+
+  if (!correo.trim()) {
+    newErrors.correo = "El correo es obligatorio.";
+  } else if (!/\S+@\S+\.\S+/.test(correo)) {
+    newErrors.correo = "Formato de correo no válido.";
+  }
+
+  if (!calle.trim()) {
+    newErrors.calle = "La calle es obligatoria.";
+  } else if (!/^[A-Za-zÁÉÍÓÚÑáéíóúñ0-9 ]+$/.test(calle)) {
+    newErrors.calle = "La calle solo puede contener letras y números.";
+  }
+
+  if (departamento.trim() && !/^[0-9]+$/.test(departamento)) {
+    newErrors.departamento = "El departamento solo puede contener números.";
+  }
+
+  if (!regionSeleccionada) {
+    newErrors.region = "Selecciona una región.";
+  }
+
+  if (!comunaSeleccionada) {
+    newErrors.comuna = "Selecciona una comuna.";
+  }
+
+  if (indicaciones.trim() && !/^[A-Za-zÁÉÍÓÚÑáéíóúñ0-9 ,.()\n-]*$/.test(indicaciones)) {
+  newErrors.indicaciones = "Las indicaciones contienen caracteres no permitidos.";
+}
+
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -41,6 +95,11 @@ export default function Comprar() {
   }, [regionSeleccionada, comunas]);
 
   const handleComprar = () => {
+     if (!validarFormulario()) {
+    alert("Por favor corrige los campos marcados.");
+    return;
+  }
+
     if (cart.length === 0) {
       alert("Tu carrito está vacío. Agrega productos antes de comprar.");
       return;
@@ -134,15 +193,22 @@ export default function Comprar() {
                     <input
                       id="nombre"
                       type="text"
-                      className="form-control"
+                      className={`form-control ${errors.nombre ? "is-invalid" : ""}`}
                       value={nombre}
-                      onChange={(e) => setNombre(e.target.value.replace(/[0-9]/g, ''))}
+                      onChange={(e) => setNombre(e.target.value.replace(/[0-9]/g, ""))}
                       required
                     />
+                    {errors.nombre && <div className="invalid-feedback">{errors.nombre}</div>}
               </div>
                 <div className="col-md-6 mb-3">
                   <label className="form-label">Apellidos *</label>
-                  <input type="text" className="form-control" required />
+                  <input
+                    type="text"
+                    className={`form-control ${errors.apellidos ? "is-invalid" : ""}`}
+                    value={apellidos}
+                    onChange={(e) => setApellidos(e.target.value.replace(/[0-9]/g, ""))}
+                  />
+                  {errors.apellidos && <div className="invalid-feedback">{errors.apellidos}</div>}
                 </div>
                 <div className="col-md-6 mb-3">
                   <label className="form-label" htmlFor="correo">
@@ -150,10 +216,13 @@ export default function Comprar() {
                   </label>
                   <input
                     id="correo"
-                    className="form-control"
+                    className={`form-control ${errors.correo ? "is-invalid" : ""}`}
                     required
                     type="email"
+                    value={correo}
+                    onChange={(e) => setCorreo(e.target.value)}
                   />
+                  {errors.correo && <div className="invalid-feedback">{errors.correo}</div>}
               </div>
               </div>
 
@@ -164,21 +233,35 @@ export default function Comprar() {
                   Calle *
                 </label>
                 <input
-                  id="calle"
-                  className="form-control"
-                  required
                   type="text"
+                  id="calle"
+                  className={`form-control ${errors.calle ? "is-invalid" : ""}`}
+                  value={calle}
+                  onChange={(e) => setCalle(e.target.value)}
+                  required
                 />
+                {errors.calle && (
+                  <div className="invalid-feedback">{errors.calle}</div>
+                )}
               </div>
                 <div className="col-md-6 mb-3">
                   <label className="form-label">Departamento (opcional)</label>
-                  <input type="text" className="form-control" placeholder="Ej: 603" />
+                  <input 
+                    type="text" 
+                    className={`form-control ${errors.departamento ? "is-invalid" : ""}`}
+                    value={departamento}
+                    onChange={(e) => setDepartamento(e.target.value)}
+                    placeholder="Ej: 603" 
+                  />
+                  {errors.departamento && (
+                    <div className="invalid-feedback">{errors.departamento}</div>
+                  )}
                 </div>
 
                 <div className="col-md-6 mb-3">
                   <label className="form-label">Región *</label>
                   <select
-                    className="form-select"
+                    className={`form-select ${errors.region ? "is-invalid" : ""}`}
                     onChange={(e) => setRegionSeleccionada(e.target.value)}
                     value={regionSeleccionada}
                     required
@@ -190,11 +273,16 @@ export default function Comprar() {
                       </option>
                     ))}
                   </select>
+                  {errors.region && <div className="invalid-feedback">{errors.region}</div>}
                 </div>
 
                 <div className="col-md-6 mb-3">
                   <label className="form-label">Comuna *</label>
-                  <select className="form-select" required>
+                  <select 
+                    className={`form-select ${errors.comuna ? "is-invalid" : ""}`} 
+                    value={comunaSeleccionada}
+                    onChange={(e) => setComunaSeleccionada(e.target.value)}
+                    required>
                     <option value="">Seleccione una comuna</option>
                     {comunasFiltradas.map((c) => (
                       <option key={c.id} value={c.id}>
@@ -202,15 +290,25 @@ export default function Comprar() {
                       </option>
                     ))}
                   </select>
+
+                  {errors.comuna && (
+                    <div className="invalid-feedback">{errors.comuna}</div>
+                  )}
                 </div>
 
                 <div className="mb-3">
                   <label className="form-label">Indicaciones (opcional)</label>
                   <textarea
-                    className="form-control"
+                    className={`form-control ${errors.indicaciones ? "is-invalid" : ""}`}
                     rows="3"
                     placeholder="Ej.: Entre calles, color del edificio..."
+                    value={indicaciones}
+                    onChange={(e) => setIndicaciones(e.target.value)}
                   ></textarea>
+
+                  {errors.indicaciones && (
+                    <div className="invalid-feedback">{errors.indicaciones}</div>
+                  )}
                 </div>
               </div>
 
