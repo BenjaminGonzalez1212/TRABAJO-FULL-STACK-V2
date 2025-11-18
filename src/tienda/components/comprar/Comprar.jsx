@@ -112,30 +112,8 @@ export default function Comprar() {
     navigate("/TRABAJO-FULL-STACK-V2/app");
   };
 
-  const handleVolverCarrito = () => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-    navigate("/TRABAJO-FULL-STACK-V2/carrito");
-  };
-
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div className="container-fluid">
-          <span
-            className="navbar-brand"
-            style={{ cursor: "pointer" }}
-            onClick={() => navigate("/TRABAJO-FULL-STACK-V2/app")}
-          >
-            Pastelería Gamery
-          </span>
-          <div className="d-flex">
-            <button className="btn btn-light" onClick={handleVolverCarrito}>
-              ← Volver al Carrito
-            </button>
-          </div>
-        </div>
-      </nav>
-
       <div className="container my-5">
         <div className="card shadow-lg p-4">
           <h3 className="text-center mb-4">🛒 Carrito de Compra</h3>
@@ -321,10 +299,6 @@ export default function Comprar() {
           )}
         </div>
       </div>
-
-      <footer className="bg-dark text-light text-center py-3 mt-5">
-        © 2025 Pastelería Gamery — Todos los derechos reservados 
-      </footer>
     </>
   );
 }

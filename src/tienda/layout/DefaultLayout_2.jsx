@@ -7,7 +7,7 @@ export default function DefaultLayout_2({ children }) {
         <nav>
           <ul>
             <li>
-              <Link to="/TRABAJO-FULL-STACK-V2/app">Volver a Home</Link>
+              <Link to="/TRABAJO-FULL-STACK-V2/">Volver a Home</Link>
             </li>
             <li>
               <Link to="/TRABAJO-FULL-STACK-V2/administrador/signupadmin">Ir a Signup</Link>

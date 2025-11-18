@@ -90,51 +90,6 @@ export default function Carrito() {
   
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="/TRABAJO-FULL-STACK-V2/app">Pastelería Gamery</a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarColor01"
-            aria-controls="navbarColor01"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-
-          <div className="collapse navbar-collapse" id="navbarColor01">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a className="nav-link active" href="/TRABAJO-FULL-STACK-V2/app">Inicio</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Productos</a>
-              </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  data-bs-toggle="dropdown"
-                  href="#"
-                  role="button"
-                  aria-expanded="false"
-                >
-                  Más
-                </a>
-                <div className="dropdown-menu">
-                  <a className="dropdown-item" href="/TRABAJO-FULL-STACK-V2/blogs">Blog</a>
-                  <div className="dropdown-divider"></div>
-                  <a className="dropdown-item" href="/TRABAJO-FULL-STACK-V2/administrador/inicio">Administrador</a>
-                </div>
-              </li>
-            </ul>
-            <ul className="navbar-nav ms-auto">{navContent}</ul>
-          </div>
-        </div>
-      </nav>
-
       <main className="container py-5">
         <h2 className="mb-4">Productos</h2>
         <div className="row mb-5">
@@ -212,8 +167,6 @@ export default function Carrito() {
           <button className="btn btn-success btn-lg" onClick={handleComprar}>Comprar ahora</button>
         </div>
       </main>
-
-      <footer className="bg-dark text-light text-center py-3 mt-5">&copy; 2025 Pastelería Gamery</footer>
     </>
   );
 }
