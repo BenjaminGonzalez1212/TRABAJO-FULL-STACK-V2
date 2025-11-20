@@ -1,4 +1,5 @@
 import { useAuth } from "../auth/AuthProvider";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const auth = useAuth();
@@ -9,11 +10,15 @@ export default function Header() {
     navContent = (
       <>
         <li className="nav-item">
-          <a className="nav-link active" href="/TRABAJO-FULL-STACK-V2/login">Login</a>
+          <Link to="/TRABAJO-FULL-STACK-V2/login" className="nav-link active">
+            Login
+          </Link>
         </li>
 
         <li className="nav-item">
-          <a className="nav-link active" href="/TRABAJO-FULL-STACK-V2/signup">SignUp</a>
+          <Link to="/TRABAJO-FULL-STACK-V2/signup" className="nav-link active">
+            SignUp
+          </Link>
         </li>
       </>
     );
@@ -36,7 +41,9 @@ export default function Header() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="container-fluid">
-        <a className="navbar-brand" href="/TRABAJO-FULL-STACK-V2/">Pastelería Gamery</a>
+        <Link to="/TRABAJO-FULL-STACK-V2/" className="navbar-brand">
+          Pastelería Gamery
+        </Link>
 
         <button
           className="navbar-toggler"
@@ -51,11 +58,15 @@ export default function Header() {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
 
             <li className="nav-item">
-              <a className="nav-link active" href="/">Inicio</a>
+              <Link to="/" className="nav-link active">
+                Inicio
+              </Link>
             </li>
 
             <li className="nav-item">
-              <a className="nav-link active" href="/TRABAJO-FULL-STACK-V2/carrito">Productos</a>
+              <Link to="/TRABAJO-FULL-STACK-V2/carrito" className="nav-link active">
+                Productos
+              </Link>
             </li>
 
             <li className="nav-item dropdown">
@@ -64,10 +75,16 @@ export default function Header() {
               </a>
 
               <div className="dropdown-menu">
-                <a className="dropdown-item" href="/TRABAJO-FULL-STACK-V2/blogs">Blog</a>
+                <Link to="/TRABAJO-FULL-STACK-V2/blogs" className="dropdown-item">
+                  Blog
+                </Link>
                 <div className="dropdown-divider"></div>
-                <a className="dropdown-item" href="/TRABAJO-FULL-STACK-V2/administrador/inicio">Administrador</a>
-                <a className="dropdown-item" href="/TRABAJO-FULL-STACK-V2/componente1">chicomano</a>
+                <Link to="/TRABAJO-FULL-STACK-V2/administrador/inicio" className="dropdown-item">
+                  Administrador
+                </Link>
+                <Link to="/TRABAJO-FULL-STACK-V2/componente1" className="dropdown-item">
+                  chicomano
+                </Link>
               </div>
             </li>
           </ul>

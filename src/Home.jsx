@@ -2,6 +2,7 @@ import "bootswatch/dist/journal/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./App.css";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
@@ -22,9 +23,9 @@ export default function Home() {
             Sube de nivel con nuestros pasteles inspirados en tus videojuegos favoritos!
           </p>
 
-          <a href="/TRABAJO-FULL-STACK-V2/carrito" className="btn btn-primary btn-lg">
+          <Link to="/TRABAJO-FULL-STACK-V2/carrito" className="btn btn-primary btn-lg">
             Explorar productos
-          </a>
+          </Link>
         </div>
       </main>
 
@@ -40,9 +41,9 @@ export default function Home() {
                 <p className="card-text">
                   Torta de frambuesa manjar con diseño de overol hecho en fondant.
                 </p>
-                <a href="/TRABAJO-FULL-STACK-V2/carrito">
+                <Link to="/TRABAJO-FULL-STACK-V2/carrito">
                   <button className="btn btn-primary">Ver más</button>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -55,9 +56,9 @@ export default function Home() {
                 <p className="card-text">
                   Torta tres leches inspirada en The Legend of Zelda.
                 </p>
-                <a href="/TRABAJO-FULL-STACK-V2/carrito">
+                <Link to="/TRABAJO-FULL-STACK-V2/carrito">
                   <button className="btn btn-primary">Ver más</button>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -70,9 +71,9 @@ export default function Home() {
                 <p className="card-text">
                   Torta de frambuesa al estilo Minecraft, hecha en fondant.
                 </p>
-                <a href="/TRABAJO-FULL-STACK-V2/carrito">
+                <Link to="/TRABAJO-FULL-STACK-V2/carrito">
                   <button className="btn btn-primary">Ver más</button>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
