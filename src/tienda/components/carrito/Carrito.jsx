@@ -96,18 +96,24 @@ export default function Carrito() {
           {productos.map(producto => (
             <div key={producto.id} className="col-md-3 mb-3">
               <div className="card card-producto h-100">
-                <img 
-                  src={producto.imagen} 
-                  alt={producto.nombre} 
-                  className="card-img-top"
-                  style={{ width: "700px", height: "350px", objectFit: "cover" }}
-                />
+                <Link to={`/TRABAJO-FULL-STACK-V2/producto/${producto.id}`}>
+                  <img 
+                    src={producto.imagen} 
+                    alt={producto.nombre} 
+                    className="card-img-top"
+                    style={{ width: "700px", height: "350px", objectFit: "cover" }}
+                  />
+                </Link>
                 <div className="card-body d-flex flex-column">
-                  <h5 className="card-title">{producto.nombre}</h5>
+                  <Link to={`/TRABAJO-FULL-STACK-V2/producto/${producto.id}`} 
+                    className="text-decoration-none"
+                  >
+                    <h5 className="card-title">{producto.nombre}</h5>
+                  </Link>
                   <p className="card-text text-muted">{producto.categoria}</p>
                   <div className="mt-auto">
-                    <span className="text-decoration-line-through">${producto.precio_descuento}</span>{" "}
-                    <span className="fw-bold">${producto.precio_nuevo}</span>
+                    <span className="text-decoration-line-through">{producto.precio_descuento} clp</span>{" "}
+                    <span className="fw-bold">{producto.precio_nuevo} clp</span>
                     <div className="d-grid mt-2">
                       <button className="btn btn-dark" onClick={() => addToCart(producto)}>Añadir</button>
                     </div>
@@ -135,14 +141,16 @@ export default function Carrito() {
               {cart.map(item => (
                 <tr key={item.id}>
                   <td>
-                    <img 
+                    <img
                       src={item.imagen} 
                       alt={item.nombre} 
                       style={{ width: "100px", height: "60px", objectFit: "cover" }}
                     />
                   </td>
-                  <td>{item.nombre}</td>
-                  <td>${item.precio_nuevo}</td>
+                  <td>
+                    {item.nombre}
+                  </td>
+                  <td>{item.precio_nuevo} clp</td>
                   <td>
                     <div className="d-flex align-items-center">
                       <button className="btn btn-outline-secondary btn-sm" onClick={() => changeQuantity(item.id, -1)} disabled={item.quantity <= 1}>-</button>
@@ -150,13 +158,13 @@ export default function Carrito() {
                       <button className="btn btn-outline-secondary btn-sm" onClick={() => changeQuantity(item.id, 1)} disabled={item.quantity >= item.stock}>+</button>
                     </div>
                   </td>
-                  <td>${item.precio_nuevo * item.quantity}</td>
+                  <td>{item.precio_nuevo * item.quantity} clp</td>
                   <td><button className="btn btn-danger btn-sm" onClick={() => deleteFromCart(item.id)}>Eliminar</button></td>
                 </tr>
               ))}
               <tr>
                 <td colSpan="4" className="text-end fw-bold">Total</td>
-                <td colSpan="2" className="fw-bold">${totalCompras}</td>
+                <td colSpan="2" className="fw-bold">{totalCompras} clp</td>
               </tr>
             </tbody>
           </table>

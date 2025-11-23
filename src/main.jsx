@@ -9,6 +9,7 @@ import Signup from './tienda/RegistroUsuario.jsx'
 import Dashboard from './tienda/DashBoard.jsx'
 import Carrito from './tienda/components/carrito/Carrito.jsx';
 import Comprar from './tienda/components/comprar/Comprar.jsx'
+import DetalleProducto from './tienda/components/carrito/DetalleProducto.jsx';
 import Blogs from './tienda/blogs/Blogs.jsx'
 import DetalleBlogs from './tienda/blogs/DetalleBlogs.jsx'
 import Administrador from './administrador/administrador.jsx'
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <Home />
+      },
+      
+      { path: "producto/:id",
+        element: <DetalleProducto /> 
       },
       
       {
