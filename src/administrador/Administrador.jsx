@@ -41,10 +41,10 @@ export default function Administrador() {
 
         <section className="admin-top-sections">
           <div className="admin-big-card blue-card">
-            <span>Compras</span>
+            <span>Numero de Compras</span>
           </div>
           <div className="admin-big-card green-card">
-            <span>Productos</span>
+            <span>Entradas de blog</span>
           </div>
           <div className="admin-big-card yellow-card">
             <span>Usuarios Registrados</span>
@@ -53,28 +53,16 @@ export default function Administrador() {
 
         <section className="admin-small-cards">
           <div className="admin-card">
-            <span>Dashboard</span>
+            <span>Catalogo</span>
           </div>
           <div className="admin-card">
-            <span>Órdenes</span>
-          </div>
-          <div className="admin-card">
-            <span>Productos</span>
-          </div>
-          <div className="admin-card">
-            <span>Categorías</span>
+            <span>Blogs</span>
           </div>
           <div className="admin-card">
             <span>Usuarios</span>
           </div>
           <div className="admin-card">
-            <span>Reportes</span>
-          </div>
-          <div className="admin-card">
-            <span>Perfil</span>
-          </div>
-          <div className="admin-card">
-            <span>Tienda</span>
+            <span>Pedidos</span>
           </div>
         </section>
 

@@ -16,6 +16,7 @@ export function AuthProvider({ children }) {
   const login = (userData) => {
     setIsAuthenticated(true);
     setUser(userData);
+
     sessionStorage.setItem("isAuthenticated", "true");
     sessionStorage.setItem("user", JSON.stringify(userData));
   };

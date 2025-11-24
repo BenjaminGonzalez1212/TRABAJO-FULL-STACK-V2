@@ -79,9 +79,6 @@ export default function Header() {
                   Blog
                 </Link>
                 <div className="dropdown-divider"></div>
-                <Link to="/TRABAJO-FULL-STACK-V2/administrador/inicio" className="dropdown-item">
-                  Administrador
-                </Link>
                 <Link to="/TRABAJO-FULL-STACK-V2/componente1" className="dropdown-item">
                   chicomano
                 </Link>

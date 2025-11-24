@@ -13,9 +13,7 @@ import DetalleProducto from './tienda/components/carrito/DetalleProducto.jsx';
 import Blogs from './tienda/blogs/Blogs.jsx'
 import DetalleBlogs from './tienda/blogs/DetalleBlogs.jsx'
 import Administrador from './administrador/administrador.jsx'
-import LoginAdmin from './administrador/LogInAdmin.jsx'
 import ProtectedRouteAdmin from './tienda/auth/ProtectedRouteAdmin.jsx'
-import SignupAdmin from './administrador/SignUpAdmin.jsx'
 import Componente1 from './tienda/components/Compenente1.jsx'
 import Home from './Home.jsx'
 
@@ -67,17 +65,6 @@ const router = createBrowserRouter([
           }
         ]
       },
-
-      {
-        path: "administrador",
-        element: <ProtectedRouteAdmin />,
-        children: [
-          {
-            path: "inicio",
-            element: <Administrador />
-          },
-        ]
-      },
     ],
   },
 
@@ -93,6 +80,17 @@ const router = createBrowserRouter([
   },
 
   {
+    path: "/TRABAJO-FULL-STACK-V2/administrador",
+    element: <ProtectedRouteAdmin />,
+    children: [
+      {
+        path: "inicio",
+        element: <Administrador />
+      },
+    ]
+  },
+
+  {
     path: "/TRABAJO-FULL-STACK-V2/login",
     element: <Login />,
   },
@@ -100,16 +98,6 @@ const router = createBrowserRouter([
   {
     path: "/TRABAJO-FULL-STACK-V2/signup",
     element: <Signup />,
-  },
-
-  {
-    path: "/TRABAJO-FULL-STACK-V2/administrador/loginadmin",
-    element: <LoginAdmin />,
-  },
-
-  {
-    path: "/TRABAJO-FULL-STACK-V2/administrador/signupadmin",
-    element: <SignupAdmin />,
   },
 
 ]);

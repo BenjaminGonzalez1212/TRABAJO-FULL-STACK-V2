@@ -2,7 +2,8 @@ import { Navigate } from "react-router-dom";
 import DefaultLayout from "./layout/DefaultLayout";
 import { useState } from "react";
 import { useAuth } from "./auth/AuthProvider";
-import { createUser, findUser, getUsers } from "./data/Users";
+import { findUser } from "../services/personaService";
+import { findAdmin } from "../services/adminService";
 
 export default function Login() {
     const [ email, setEmail ] = useState("");
@@ -11,24 +12,34 @@ export default function Login() {
 
     const auth = useAuth();
 
-    if(auth.isAuthenticated) {
-        return <Navigate to = "/TRABAJO-FULL-STACK-V2/app" /> 
+    if (auth.isAuthenticated) {
+        if (auth.user?.role === "admin") {
+            return <Navigate to="/TRABAJO-FULL-STACK-V2/administrador/inicio" replace />;
+        } else {
+            return <Navigate to="/TRABAJO-FULL-STACK-V2/" replace />;
+        }
     }
 
-    const handleSubmit = (e) => {
-    e.preventDefault();
 
-    const user = findUser(email, password)
-
-    if (user) {
-        auth.login(user);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         setError("");
-        alter("Sesion iniciada")
-    } else {
+
+        const admin = await findAdmin(email, password);
+        if (admin) {
+            auth.login({ ...admin, role: "admin" });
+            return;
+        }
+
+        const user = await findUser(email, password);
+        if (user) {
+            auth.login({ ...user, role: "user" });
+            return;
+        }
+
         setError("Email o contraseña incorrectos");
-    }
-    
-  };
+    };
+
 
     return (
         <DefaultLayout>
