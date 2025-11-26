@@ -1,6 +1,7 @@
 import { useAuth } from "../tienda/auth/AuthProvider";
 import "../administrador/Administrador.css";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function Administrador() {
   const auth = useAuth();
@@ -9,6 +10,24 @@ export default function Administrador() {
     e.preventDefault();
     auth.logout();
   };
+
+  const [numUsuarios, setNumUsuarios] = useState(0);
+
+  const fetchNumUsuarios = () => {
+    fetch("http://13.222.207.30:8080/api/personas")
+      .then(res => res.json())
+      .then(data => {
+        setNumUsuarios(data.length);
+      })
+      .catch(err => {
+        console.error("error usuarios:", err);
+      });
+  };
+
+  useEffect(() => {
+    fetchNumUsuarios();
+  }, []);
+
 
   return (
     <div className="admin-layout">
@@ -48,7 +67,7 @@ export default function Administrador() {
             <span>Entradas de blog</span>
           </div>
           <div className="admin-big-card yellow-card">
-            <span>Usuarios Registrados</span>
+            <span>Usuarios Registrados: {numUsuarios}</span>
           </div>
         </section>
 
