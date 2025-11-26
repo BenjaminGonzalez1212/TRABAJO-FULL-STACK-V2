@@ -1,5 +1,6 @@
 import { useAuth } from "../tienda/auth/AuthProvider";
 import "../administrador/Administrador.css";
+import { Link } from "react-router-dom";
 
 export default function Administrador() {
   const auth = useAuth();
@@ -52,17 +53,18 @@ export default function Administrador() {
         </section>
 
         <section className="admin-small-cards">
+          <Link to="/TRABAJO-FULL-STACK-V2/admin/usuarios" className="admin-card">
+            <span>Usuarios</span>
+          </Link>
+
+          <div className="admin-card">
+            <span>Pedidos</span>
+          </div>
           <div className="admin-card">
             <span>Catalogo</span>
           </div>
           <div className="admin-card">
             <span>Blogs</span>
-          </div>
-          <div className="admin-card">
-            <span>Usuarios</span>
-          </div>
-          <div className="admin-card">
-            <span>Pedidos</span>
           </div>
         </section>
 

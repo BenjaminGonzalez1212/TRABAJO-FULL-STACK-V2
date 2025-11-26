@@ -12,10 +12,12 @@ import Comprar from './tienda/components/comprar/Comprar.jsx'
 import DetalleProducto from './tienda/components/carrito/DetalleProducto.jsx';
 import Blogs from './tienda/blogs/Blogs.jsx'
 import DetalleBlogs from './tienda/blogs/DetalleBlogs.jsx'
-import Administrador from './administrador/administrador.jsx'
+import Administrador from './administrador/Administrador.jsx'
 import ProtectedRouteAdmin from './tienda/auth/ProtectedRouteAdmin.jsx'
 import Componente1 from './tienda/components/Compenente1.jsx'
 import Home from './Home.jsx'
+
+import Usuarios from './administrador/usuarios/usuarios.jsx'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ProtectedRoute from './tienda/ProtectedRoute.jsx'
@@ -98,6 +100,11 @@ const router = createBrowserRouter([
   {
     path: "/TRABAJO-FULL-STACK-V2/signup",
     element: <Signup />,
+  },
+
+  {
+    path: "TRABAJO-FULL-STACK-V2/admin/usuarios",
+    element: <Usuarios />,
   },
 
 ]);
