@@ -3,8 +3,11 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./App.css";
 import { Link } from "react-router-dom";
+import { productos } from "./tienda/data/Products.js";
 
 export default function Home() {
+  const productosDestacados = productos.filter((p) => p.esPastel).slice(0, 3);
+
   return (
     <>
       <main
@@ -23,7 +26,7 @@ export default function Home() {
             Sube de nivel con nuestros pasteles inspirados en tus videojuegos favoritos!
           </p>
 
-          <Link to="/TRABAJO-FULL-STACK-V2/carrito" className="btn btn-primary btn-lg">
+          <Link to="/TRABAJO-FULL-STACK-V2/productos" className="btn btn-primary btn-lg">
             Explorar productos
           </Link>
         </div>
@@ -33,51 +36,24 @@ export default function Home() {
         <h2 className="text-center text-primary fw-bold mb-4">Productos destacados</h2>
 
         <div className="row g-4">
-          <div className="col-md-4">
-            <div className="card h-100 shadow-sm">
-              <img src="/TRABAJO-FULL-STACK-V2/img/pastel-mario.jpg" className="card-img-top" alt="Pastel Mario" />
-              <div className="card-body">
-                <h5 className="card-title">Pastel Mario</h5>
-                <p className="card-text">
-                  Torta de frambuesa manjar con diseño de overol hecho en fondant.
-                </p>
-                <Link to="/TRABAJO-FULL-STACK-V2/carrito">
-                  <button className="btn btn-primary">Ver más</button>
-                </Link>
+          {productosDestacados.map((p) => (
+            <div key={p.id} className="col-md-4">
+              <div className="card h-100 shadow-sm">
+                <img 
+                  src={p.imagen}
+                  className="card-img-top img-producto"
+                  alt={p.nombre}
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{p.nombre}</h5>
+                  <p className="card-text">{p.descripcion}</p>
+                  <Link to="/TRABAJO-FULL-STACK-V2/productos">
+                    <button className="btn btn-primary">Ver más</button>
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
-
-          <div className="col-md-4">
-            <div className="card h-100 shadow-sm">
-              <img src="/TRABAJO-FULL-STACK-V2/img/pastel-zelda.jpg" className="card-img-top" alt="Pastel Zelda" />
-              <div className="card-body">
-                <h5 className="card-title">Pastel Zelda</h5>
-                <p className="card-text">
-                  Torta tres leches inspirada en The Legend of Zelda.
-                </p>
-                <Link to="/TRABAJO-FULL-STACK-V2/carrito">
-                  <button className="btn btn-primary">Ver más</button>
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-md-4">
-            <div className="card h-100 shadow-sm">
-              <img src="/TRABAJO-FULL-STACK-V2/img/pastel-minecraft.jpg" className="card-img-top" alt="Pastel Minecraft" />
-              <div className="card-body">
-                <h5 className="card-title">Pastel Minecraft</h5>
-                <p className="card-text">
-                  Torta de frambuesa al estilo Minecraft, hecha en fondant.
-                </p>
-                <Link to="/TRABAJO-FULL-STACK-V2/carrito">
-                  <button className="btn btn-primary">Ver más</button>
-                </Link>
-              </div>
-            </div>
-          </div>
-
+          ))}
         </div>
       </section>
     </>

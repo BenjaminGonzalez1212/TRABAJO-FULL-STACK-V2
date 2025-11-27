@@ -94,3 +94,8 @@ h2.text-primary {
     font-size: 1.6rem;
   }
 }
+
+.img-producto {
+  height: 400px;
+  object-fit: cover;
+}

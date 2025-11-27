@@ -64,7 +64,7 @@ export default function Header() {
             </li>
 
             <li className="nav-item">
-              <Link to="/TRABAJO-FULL-STACK-V2/carrito" className="nav-link active">
+              <Link to="/TRABAJO-FULL-STACK-V2/productos" className="nav-link active">
                 Productos
               </Link>
             </li>
@@ -84,8 +84,13 @@ export default function Header() {
                 </Link>
               </div>
             </li>
-          </ul>
 
+            <li className="nav-item">
+              <Link to="/TRABAJO-FULL-STACK-V2/carrito" className="nav-link active">
+                <i className="bi bi-cart3" style={{ fontSize: "1.4rem" }}></i>
+              </Link>
+            </li>
+          </ul>
           <ul className="navbar-nav ms-auto">{navContent}</ul>
         </div>
       </div>

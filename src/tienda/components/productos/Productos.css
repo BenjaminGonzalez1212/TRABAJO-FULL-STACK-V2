@@ -1,0 +1,46 @@
+/* ------------------------- ESTILOS PRODUCTOS ------------------------- */
+
+/* Tarjetas de productos */
+.card-producto {
+  transition: transform 0.2s;
+  height: 100%;
+}
+
+.card-producto:hover {
+  transform: scale(1.05);
+}
+
+/* Imagen dentro de tarjetas */
+.card-producto img,
+.card img {
+  border-radius: 5px;
+  max-width: 100%;
+}
+
+/* Galería grande (si la usas en detalles) */
+.product-img {
+  width: 700px;
+  height: 350px;
+  object-fit: cover;
+}
+
+.ir-carrito-container {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.btn-ir-carrito {
+  background-color: #0d6efd;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.btn-ir-carrito:hover {
+  background-color: #084298;
+}

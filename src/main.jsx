@@ -16,6 +16,8 @@ import Administrador from './administrador/Administrador.jsx'
 import ProtectedRouteAdmin from './tienda/auth/ProtectedRouteAdmin.jsx'
 import Componente1 from './tienda/components/Compenente1.jsx'
 import Home from './Home.jsx'
+import Productos from './tienda/components/productos/Productos.jsx';
+import { CartProvider } from "./tienda/context/CartContext.jsx";
 
 import Usuarios from './administrador/usuarios/usuarios.jsx'
 
@@ -33,6 +35,11 @@ const router = createBrowserRouter([
         element: <Home />
       },
       
+      {
+      path: "productos",
+      element: <Productos />
+      },
+
       { path: "producto/:id",
         element: <DetalleProducto /> 
       },
@@ -109,10 +116,12 @@ const router = createBrowserRouter([
 
 ]);
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <CartProvider>
+        <RouterProvider router={router} />
+      </CartProvider>
     </AuthProvider>
-  </StrictMode>,
-)
+  </StrictMode>
+);
