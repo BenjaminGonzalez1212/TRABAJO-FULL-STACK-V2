@@ -9,12 +9,14 @@ export default function Administrador() {
   const handleLogout = (e) => {
     e.preventDefault();
     auth.logout();
+    <Link rel="stylesheet" to="/TRABAJO-FULL-STACK-V2/" Link/>
   };
 
   const [numUsuarios, setNumUsuarios] = useState(0);
+  const [numBlogs, setNumBlogs] = useState(0);
 
   const fetchNumUsuarios = () => {
-    fetch("http://13.222.207.30:8080/api/personas")
+    fetch("/api/personas")
       .then(res => res.json())
       .then(data => {
         setNumUsuarios(data.length);
@@ -28,26 +30,39 @@ export default function Administrador() {
     fetchNumUsuarios();
   }, []);
 
+  //-------------------------------
+
+  const fetchNumBlogs = () => {
+    fetch("/api/personas")
+      .then(res => res.json())
+      .then(data => {
+        setNumBlogs(data.length);
+      })
+      .catch(err => {
+        console.error("error blog:", err);
+      });
+  };
+
+  useEffect(() => {
+    fetchNumBlogs();
+  }, []);
+
 
   return (
     <div className="admin-layout">
       <nav className="admin-sidebar bg-primary text-white">
         <div className="sidebar-header">
-          <h2 className="fw-bold">Gamery Admin</h2>
+          <h2 className="fw">Gamery Admin</h2>
         </div>
 
         <ul className="nav flex-column">
-          <li><a href="#">Inicio</a></li>
-          <li><a href="#">Órdenes</a></li>
-          <li><a href="#">Productos</a></li>
-          <li><a href="#">Categorías</a></li>
-          <li><a href="#">Usuarios</a></li>
-          <li><a href="#">Reportes</a></li>
-          <li><a href="#">Tienda</a></li>
+          <li><a href="/TRABAJO-FULL-STACK-V2/">Inicio</a></li>
+          <li><a href="/TRABAJO-FULL-STACK-V2/productos">Catalogo</a></li>
+          <li><a href="/TRABAJO-FULL-STACK-V2/blogs">Blog</a></li>
+          <li><a href="/TRABAJO-FULL-STACK-V2/carrito">Carrito</a></li>
         </ul>
 
         <div className="sidebar-footer">
-          <a href="#" className="perfil-link">Perfil</a>
           <button className="btn-logout" onClick={handleLogout}>
             Cerrar sesión
           </button>
@@ -63,9 +78,11 @@ export default function Administrador() {
           <div className="admin-big-card blue-card">
             <span>Numero de Compras</span>
           </div>
+          
           <div className="admin-big-card green-card">
-            <span>Entradas de blog</span>
+            <span>Entradas de blog: {numBlogs}</span>
           </div>
+
           <div className="admin-big-card yellow-card">
             <span>Usuarios Registrados: {numUsuarios}</span>
           </div>
@@ -79,12 +96,14 @@ export default function Administrador() {
           <div className="admin-card">
             <span>Pedidos</span>
           </div>
+          
           <div className="admin-card">
             <span>Catalogo</span>
           </div>
-          <div className="admin-card">
+
+          <Link to="/TRABAJO-FULL-STACK-V2/admin/Blogs" className="admin-card">
             <span>Blogs</span>
-          </div>
+          </Link>
         </section>
 
         <div className="text-center mt-3 border-top border-light pt-3">

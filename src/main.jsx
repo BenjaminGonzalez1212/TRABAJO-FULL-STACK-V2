@@ -4,6 +4,7 @@ import './index.css'
 
 import App from './App.jsx'
 import AppVolver from './AppVolver.jsx'
+import AdminAppVolver from './AdminAppVolver.jsx'
 import Login from './tienda/IniciarSecion.jsx'
 import Signup from './tienda/RegistroUsuario.jsx'
 import Dashboard from './tienda/DashBoard.jsx'
@@ -18,6 +19,7 @@ import Componente1 from './tienda/components/Compenente1.jsx'
 import Home from './Home.jsx'
 import Productos from './tienda/components/productos/Productos.jsx';
 import { CartProvider } from "./tienda/context/CartContext.jsx";
+import AdminBlogs from './administrador/AdminBlogs/AdminBlogs.jsx'
 
 import Usuarios from './administrador/usuarios/usuarios.jsx'
 
@@ -89,12 +91,38 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/TRABAJO-FULL-STACK-V2/administrador",
+    path: "/TRABAJO-FULL-STACK-V2/admin",
     element: <ProtectedRouteAdmin />,
     children: [
       {
         path: "inicio",
         element: <Administrador />
+      },
+
+      {
+        element: <AdminAppVolver />,
+        children: [
+          {
+            path: "usuarios",
+            element: <Usuarios />
+          },
+
+          {
+            path: "blogs",
+            element: <AdminBlogs />
+          },
+        ]
+      },
+    ]
+  },
+
+  {
+    path: "/TRABAJO-FULL-STACK-V2/*",
+    element: <AppVolver />,
+    children: [
+      {
+        path: "comprar",
+        element: <Comprar />
       },
     ]
   },
@@ -108,12 +136,6 @@ const router = createBrowserRouter([
     path: "/TRABAJO-FULL-STACK-V2/signup",
     element: <Signup />,
   },
-
-  {
-    path: "TRABAJO-FULL-STACK-V2/admin/usuarios",
-    element: <Usuarios />,
-  },
-
 ]);
 
 createRoot(document.getElementById("root")).render(

@@ -10,7 +10,7 @@ export default function Usuarios() {
   const [editUser, setEditUser] = useState({ name: "", email: "", password: "" });
 
   const fetchUsuarios = () => {
-    fetch("http://13.222.207.30:8080/api/personas")
+    fetch(`/api/personas`)
       .then((res) => res.json())
       .then((data) => {
         setUsuarios(data);
@@ -66,8 +66,7 @@ export default function Usuarios() {
   const deleteConfirm = (e) => {
     e.preventDefault();
     const id = modal.userId;
-      fetch(
-        `http://13.222.207.30:8080/api/personas/${id}`, {
+      fetch(`/api/personas/${id}`, {
         method: "DELETE",
       }
     )
@@ -93,8 +92,7 @@ export default function Usuarios() {
 
   const addUserConfirm = (e) => {
     e.preventDefault();
-    fetch(
-      `http://13.222.207.30:8080/api/personas`, {
+    fetch(`/api/personas`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -126,7 +124,7 @@ export default function Usuarios() {
     e.preventDefault();
     const id = modal_edit.userId;
 
-    fetch(`http://13.222.207.30:8080/api/personas/${id}`, {
+    fetch(`/api/personas/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

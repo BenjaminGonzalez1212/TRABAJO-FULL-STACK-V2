@@ -78,10 +78,6 @@ export default function Header() {
                 <Link to="/TRABAJO-FULL-STACK-V2/blogs" className="dropdown-item">
                   Blog
                 </Link>
-                <div className="dropdown-divider"></div>
-                <Link to="/TRABAJO-FULL-STACK-V2/componente1" className="dropdown-item">
-                  chicomano
-                </Link>
               </div>
             </li>
 

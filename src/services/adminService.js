@@ -1,4 +1,4 @@
-const API_URL = "http://13.222.207.30:8080/api/admin";
+const API_URL = "/api/admin";
 
 export async function findAdmin(email, password) {
     const res = await fetch(

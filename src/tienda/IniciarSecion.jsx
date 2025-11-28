@@ -14,7 +14,7 @@ export default function Login() {
 
     if (auth.isAuthenticated) {
         if (auth.user?.role === "admin") {
-            return <Navigate to="/TRABAJO-FULL-STACK-V2/administrador/inicio" replace />;
+            return <Navigate to="/TRABAJO-FULL-STACK-V2/admin/inicio" replace />;
         } else {
             return <Navigate to="/TRABAJO-FULL-STACK-V2/" replace />;
         }

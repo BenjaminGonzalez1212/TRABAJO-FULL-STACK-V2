@@ -1,4 +1,4 @@
-const API_URL = "http://13.222.207.30:8080/api/personas";
+const API_URL = "/api/personas";
 
 export async function createUser(persona) {
   const res = await fetch(

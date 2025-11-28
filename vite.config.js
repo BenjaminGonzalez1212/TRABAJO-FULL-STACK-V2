@@ -4,5 +4,14 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/TRABAJO-FULL-STACK-V2"
+  base: "/TRABAJO-FULL-STACK-V2",
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://3.235.173.112:8080',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
 })

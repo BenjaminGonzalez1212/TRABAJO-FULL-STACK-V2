@@ -1,18 +1,23 @@
 import { useParams } from "react-router-dom";
-import { blog_in } from "../data/Blogs_in";
 import "../blogs/DetalleBlogs.css";
+import { useEffect, useState } from "react";
 
 export default function DetalleBlogs() {
   const { id } = useParams();
-  const blog = blog_in.find((b) => b.id === parseInt(id));
+  const [blog, setBlog] = useState(null);
+  const API_URL = `/api/blogs/${id}`;
+
+  useEffect(() => {
+    fetch(API_URL)
+      .then(res => res.json())
+      .then(data => setBlog(data))
+      .catch(err => console.error("ERROR:", err));
+  }, [id]);
 
   if (!blog) {
     return (
       <div className="detail-container">
-        <h2>Blog no encontrado</h2>
-        <a href="/TRABAJO-FULL-STACK-V2/blogs">
-            <button className="btn-volver">volver</button>
-        </a>
+        <h2>Cargando...</h2>
       </div>
     );
   }
@@ -21,11 +26,18 @@ export default function DetalleBlogs() {
     <div className="detail-container">
       <div className="detail-card">
         <h1>{blog.name}</h1>
-        <p className="detail-date">{blog.date}</p>
+
+        <p className="detail-date">
+          {new Date(blog.date).toLocaleDateString()}
+        </p>
+
         <p className="detail-description">{blog.description}</p>
-        <p className="detail-contet">{blog.contet}</p>
+        <p className="detail-content">{blog.content}</p>
+
+        {blog.image && <img src={blog.image} className="detail-image" alt="" />}
+
         <a href="/TRABAJO-FULL-STACK-V2/blogs">
-            <button className="btn-volver">volver</button>
+          <button className="btn-volver">volver</button>
         </a>
       </div>
     </div>
