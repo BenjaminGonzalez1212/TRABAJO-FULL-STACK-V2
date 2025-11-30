@@ -65,7 +65,13 @@ export default function Header() {
 
             <li className="nav-item">
               <Link to="/TRABAJO-FULL-STACK-V2/productos" className="nav-link active">
-                Productos
+                Catalogo
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link to="/TRABAJO-FULL-STACK-V2/pedido" className="nav-link active">
+                Pedido
               </Link>
             </li>
 
@@ -83,7 +89,7 @@ export default function Header() {
 
             <li className="nav-item">
               <Link to="/TRABAJO-FULL-STACK-V2/carrito" className="nav-link active">
-                <i className="bi bi-cart3" style={{ fontSize: "1.4rem" }}></i>
+                <i className="bi bi-cart3" style={{ fontSize: "1.0rem" }}></i>
               </Link>
             </li>
           </ul>

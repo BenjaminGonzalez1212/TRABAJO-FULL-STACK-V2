@@ -5,7 +5,7 @@ export default function AdminHeaderVolver() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="container-fluid">
-        <a className="navbar-brand">Pastelería Gamery</a>
+        <a className="navbar-brand">Gamery admin</a>
 
         <div className="collapse navbar-collapse" id="navbarColor01">
           <ul className="navbar-nav ms-auto">{

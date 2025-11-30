@@ -93,13 +93,13 @@ export default function Administrador() {
             <span>Usuarios</span>
           </Link>
 
-          <div className="admin-card">
+          <Link to="/TRABAJO-FULL-STACK-V2/admin/pedidos" className="admin-card">
             <span>Pedidos</span>
-          </div>
+          </Link>
           
-          <div className="admin-card">
+          <Link to="/TRABAJO-FULL-STACK-V2/admin/catalogo" className="admin-card">
             <span>Catalogo</span>
-          </div>
+          </Link>
 
           <Link to="/TRABAJO-FULL-STACK-V2/admin/Blogs" className="admin-card">
             <span>Blogs</span>

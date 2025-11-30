@@ -1,14 +1,33 @@
 import { useParams } from "react-router-dom";
-import { productos } from "../../data/Products";
+import { useEffect, useState } from "react";
+import { useCart } from "../../context/CartContext";
 
 export default function DetalleProducto() {
   const { id } = useParams();
-  const producto = productos.find((p) => p.id === Number(id));
+  const { addToCart } = useCart();
+
+  const [producto, setProducto] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(`/api/productos/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        setProducto(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Error cargando producto:", err);
+        setLoading(false);
+      });
+  }, [id]);
+
+  if (loading) {
+    return <h2 style={{ textAlign: "center", marginTop: "50px" }}>Cargando producto...</h2>;
+  }
 
   if (!producto) {
-    return <h2 style={{ textAlign: "center", marginTop: "50px" }}>
-      Producto no encontrado
-    </h2>;
+    return <h2 style={{ textAlign: "center", marginTop: "50px" }}>Producto no encontrado</h2>;
   }
 
   return (
@@ -77,6 +96,22 @@ export default function DetalleProducto() {
         <p style={{ fontSize: "18px" }}>
           <strong>Stock:</strong> {producto.stock} disponibles
         </p>
+
+        <button
+          onClick={() => addToCart(producto)}
+          style={{
+            marginTop: "30px",
+            padding: "12px 20px",
+            fontSize: "18px",
+            backgroundColor: "#000",
+            color: "#fff",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer"
+          }}
+        >
+          Añadir al carrito
+        </button>
       </div>
     </div>
   );

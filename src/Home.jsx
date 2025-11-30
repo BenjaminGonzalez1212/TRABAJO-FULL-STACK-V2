@@ -1,7 +1,7 @@
 import "bootswatch/dist/journal/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import "./App.css";
+import "./App.css"
 import { Link } from "react-router-dom";
 import { productos } from "./tienda/data/Products.js";
 
@@ -27,7 +27,11 @@ export default function Home() {
           </p>
 
           <Link to="/TRABAJO-FULL-STACK-V2/productos" className="btn btn-primary btn-lg">
-            Explorar productos
+            Explore nuestros productos!
+          </Link>
+
+          <Link to="/TRABAJO-FULL-STACK-V2/pedido" className="btn btn-primary btn-lg">
+            Haga un pedido hoy!
           </Link>
         </div>
       </main>

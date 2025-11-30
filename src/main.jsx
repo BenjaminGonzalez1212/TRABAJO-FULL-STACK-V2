@@ -15,17 +15,19 @@ import Blogs from './tienda/blogs/Blogs.jsx'
 import DetalleBlogs from './tienda/blogs/DetalleBlogs.jsx'
 import Administrador from './administrador/Administrador.jsx'
 import ProtectedRouteAdmin from './tienda/auth/ProtectedRouteAdmin.jsx'
-import Componente1 from './tienda/components/Compenente1.jsx'
 import Home from './Home.jsx'
 import Productos from './tienda/components/productos/Productos.jsx';
 import { CartProvider } from "./tienda/context/CartContext.jsx";
-import AdminBlogs from './administrador/AdminBlogs/AdminBlogs.jsx'
+import AdminBlogs from './administrador/BlogsAdmin/AdminBlogs.jsx'
+import Pedido from './tienda/components/Pedido/Pedido.jsx'
+import PedidoAdmin from './administrador/PedidoAdmin/PedidoAdmin.jsx'
 
 import Usuarios from './administrador/usuarios/usuarios.jsx'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ProtectedRoute from './tienda/ProtectedRoute.jsx'
 import AuthContext, { AuthProvider } from './tienda/auth/AuthProvider.jsx'
+import CatalogoAdmin from './administrador/CatalogoAdmin/CatalogoAdmin.jsx'
 
 const router = createBrowserRouter([
   {
@@ -45,15 +47,15 @@ const router = createBrowserRouter([
       { path: "producto/:id",
         element: <DetalleProducto /> 
       },
-      
-      {
-        path: "componente1",
-        element: <Componente1 />
-      },
 
       {
         path: "carrito",
         element: <Carrito />
+      },
+
+      {
+        path: "pedido",
+        element: <Pedido />
       },
 
       {
@@ -105,6 +107,16 @@ const router = createBrowserRouter([
           {
             path: "usuarios",
             element: <Usuarios />
+          },
+
+          {
+            path: "pedidos",
+            element: <PedidoAdmin />
+          },
+
+          {
+            path: "catalogo",
+            element: <CatalogoAdmin />
           },
 
           {

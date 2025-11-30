@@ -160,7 +160,6 @@ export default function BlogAdmin() {
         </tbody>
       </table>
 
-      {/* DELETE POPUP */}
       {modalDelete.visible && (
         <div style={modalStyle.overlay}>
           <div style={modalStyle.box}>
@@ -171,7 +170,6 @@ export default function BlogAdmin() {
         </div>
       )}
 
-      {/* ADD POPUP */}
       {modalAdd.visible && (
         <div style={modalStyle.overlay}>
           <div style={modalStyle.box}>
@@ -215,7 +213,6 @@ export default function BlogAdmin() {
         </div>
       )}
 
-      {/* EDIT POPUP */}
       {modalEdit.visible && (
         <div style={modalStyle.overlay}>
           <div style={modalStyle.box}>

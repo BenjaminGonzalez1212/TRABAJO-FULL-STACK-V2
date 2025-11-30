@@ -1,11 +1,22 @@
 import { useCart } from "../../context/CartContext";
-import { productos } from "../../data/Products";
 import { useNavigate } from "react-router-dom";
 import "./Carrito.css";
+import { useEffect, useState } from "react";
 
 export default function Carrito() {
   const { cart, changeQuantity, deleteFromCart, clearCart } = useCart();
   const navigate = useNavigate();
+  
+  const [productosBack, setProductosBack] = useState([]);
+  const [error, setError] = useState("");
+
+  // Obtener productos reales desde backend para validar stock
+  useEffect(() => {
+    fetch("/api/productos")
+      .then(res => res.json())
+      .then(data => setProductosBack(data))
+      .catch(err => console.error("Error cargando productos:", err));
+  }, []);
 
   const total = cart.reduce(
     (sum, item) => sum + item.precio_nuevo * item.quantity,
@@ -14,15 +25,23 @@ export default function Carrito() {
 
   const handleComprar = () => {
     if (cart.length === 0) {
-      alert("Tu carrito está vacío.");
+      setError("Tu carrito está vacío.");
       return;
     }
+
+    setError("");
     navigate("/TRABAJO-FULL-STACK-V2/comprar");
   };
 
   return (
     <main className="container py-5">
       <h2>Carrito de Compras</h2>
+
+      {error && (
+        <div className="alert alert-danger mt-3">
+          {error}
+        </div>
+      )}
 
       <div className="table-responsive mt-4">
         <table className="table table-striped">
@@ -39,7 +58,7 @@ export default function Carrito() {
 
           <tbody>
             {cart.map((item) => {
-              const datos = productos.find((p) => p.id === item.id);
+              const datos = productosBack.find((p) => p.id === item.id);
 
               return (
                 <tr key={item.id}>
@@ -58,9 +77,7 @@ export default function Carrito() {
                     <div className="d-flex align-items-center">
                       <button
                         className="btn btn-outline-secondary btn-sm"
-                        onClick={() =>
-                          changeQuantity(item.id, -1, datos.stock)
-                        }
+                        onClick={() => changeQuantity(item.id, -1, datos?.stock || 1)}
                         disabled={item.quantity <= 1}
                       >
                         -
@@ -70,10 +87,8 @@ export default function Carrito() {
 
                       <button
                         className="btn btn-outline-secondary btn-sm"
-                        onClick={() =>
-                          changeQuantity(item.id, 1, datos.stock)
-                        }
-                        disabled={item.quantity >= datos.stock}
+                        onClick={() => changeQuantity(item.id, 1, datos?.stock || item.stock)}
+                        disabled={item.quantity >= (datos?.stock || 1)}
                       >
                         +
                       </button>
@@ -107,8 +122,8 @@ export default function Carrito() {
       </div>
 
       <div className="text-end mt-3">
-        <button className="btn btn-secondary me-2" onClick={clearCart}>
-          Limpiar
+        <button className="btn btn-primary me-2" onClick={clearCart}>
+          Limpiar Carrito
         </button>
         <button className="btn btn-success" onClick={handleComprar}>
           Comprar ahora

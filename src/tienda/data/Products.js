@@ -12,7 +12,7 @@ export const productos = [
     ingredientes: ["Harina, ", "Huevo, ", "Azúcar, ", "Mantequilla, ", "Vainilla, ", "Colorantes comestibles, ", "Fondant."],
     porciones: 8,
     peso: "1.2 kg",
-    preparacion: "48 horas",
+    preparacion: "48 horas", 
   },
   {
     id: 2,
