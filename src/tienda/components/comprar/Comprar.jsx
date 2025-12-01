@@ -12,6 +12,7 @@ export default function Comprar() {
   const [correo, setCorreo] = useState("");
   const [telefono, setTelefono] = useState("");
   const [indicaciones, setIndicaciones] = useState("");
+
   const [errors, setErrors] = useState({});
 
   const validarFormulario = () => {
@@ -45,11 +46,12 @@ export default function Comprar() {
     }
 
     if (cart.length === 0) {
-      alert("Tu carrito está vacío. Agrega productos antes de comprar.");
+      alert("Tu carrito está vacío.");
       return;
     }
 
     const pedido = {
+      tipo: "ENCARGO",
       nombres: nombre,
       apellidos,
       email: correo,
@@ -57,11 +59,11 @@ export default function Comprar() {
       instrucciones: indicaciones,
       date: new Date().toISOString().split("T")[0],
       total,
-      productos: cart.map(item => ({
-        id: item.id,
-        name: item.nombre,
-        quantity: item.quantity,
-        price: item.precio
+      items: cart.map((item) => ({
+          nombreProducto: item.nombre,
+          categoria: item.categoria,
+          precio: item.precio,
+          cantidad: item.quantity
       }))
     };
 
@@ -69,16 +71,17 @@ export default function Comprar() {
       const res = await fetch("/api/pedidos", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(pedido)
+        body: JSON.stringify(pedido),
       });
 
       if (!res.ok) {
-        alert("Ocurrió un error al registrar el pedido");
+        alert("Error al registrar el pedido.");
         return;
       }
 
-      alert("Compra realizada con éxito. ¡Gracias por tu pedido!");
+      alert("Compra realizada con éxito. ¡Gracias!");
       localStorage.removeItem("cart");
+
       setCart([]);
       setTotal(0);
 
@@ -133,6 +136,7 @@ export default function Comprar() {
                       <td>${item.precio * item.quantity}</td>
                     </tr>
                   ))}
+
                   <tr>
                     <td colSpan="4" className="text-end fw-bold">
                       Total
@@ -144,6 +148,7 @@ export default function Comprar() {
             </div>
 
             <hr />
+
             <h4 className="mt-4">Datos de contacto</h4>
 
             <div className="row mt-3">
@@ -164,7 +169,9 @@ export default function Comprar() {
                 <label className="form-label">Apellidos *</label>
                 <input
                   type="text"
-                  className={`form-control ${errors.apellidos ? "is-invalid" : ""}`}
+                  className={`form-control ${
+                    errors.apellidos ? "is-invalid" : ""
+                  }`}
                   value={apellidos}
                   onChange={(e) => setApellidos(e.target.value)}
                 />
@@ -177,7 +184,9 @@ export default function Comprar() {
                 <label className="form-label">Correo *</label>
                 <input
                   type="email"
-                  className={`form-control ${errors.correo ? "is-invalid" : ""}`}
+                  className={`form-control ${
+                    errors.correo ? "is-invalid" : ""
+                  }`}
                   value={correo}
                   onChange={(e) => setCorreo(e.target.value)}
                 />
@@ -190,7 +199,9 @@ export default function Comprar() {
                 <label className="form-label">Número de contacto *</label>
                 <input
                   type="text"
-                  className={`form-control ${errors.telefono ? "is-invalid" : ""}`}
+                  className={`form-control ${
+                    errors.telefono ? "is-invalid" : ""
+                  }`}
                   value={telefono}
                   onChange={(e) => setTelefono(e.target.value)}
                   placeholder="+56 9 1234 5678"

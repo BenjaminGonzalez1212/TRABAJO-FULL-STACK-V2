@@ -10,7 +10,6 @@ export default function Carrito() {
   const [productosBack, setProductosBack] = useState([]);
   const [error, setError] = useState("");
 
-  // Obtener productos reales desde backend para validar stock
   useEffect(() => {
     fetch("/api/productos")
       .then(res => res.json())

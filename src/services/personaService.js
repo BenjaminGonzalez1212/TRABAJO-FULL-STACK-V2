@@ -10,11 +10,10 @@ export async function createUser(persona) {
             body: JSON.stringify(persona),
         }
     );
-
+    
   if (!res.ok) {
     throw new Error("Error al crear usuario");
   }
-
   return res.json();
 }
 

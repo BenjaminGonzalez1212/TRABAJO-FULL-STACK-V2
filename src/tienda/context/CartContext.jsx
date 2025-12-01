@@ -5,13 +5,11 @@ const CartContext = createContext();
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
 
-  // Cargar desde localStorage al iniciar
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("cart")) || [];
     setCart(saved);
   }, []);
 
-  // Guardar cada vez que cambie
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);

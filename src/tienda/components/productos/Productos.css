@@ -1,6 +1,3 @@
-/* ------------------------- ESTILOS PRODUCTOS ------------------------- */
-
-/* Tarjetas de productos */
 .card-producto {
   transition: transform 0.2s;
   height: 100%;
@@ -10,14 +7,12 @@
   transform: scale(1.05);
 }
 
-/* Imagen dentro de tarjetas */
 .card-producto img,
 .card img {
   border-radius: 5px;
   max-width: 100%;
 }
 
-/* Galería grande (si la usas en detalles) */
 .product-img {
   width: 700px;
   height: 350px;

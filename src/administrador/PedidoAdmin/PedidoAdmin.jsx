@@ -78,14 +78,13 @@ export default function PedidoAdmin() {
     <div>
       <h2>Administración de Pedidos</h2>
 
-      <table border="1" cellPadding="8" style={{ marginTop: "20px", width: "100%" }}>
+      <table border="1" cellPadding="8" style={{ marginTop: "20px", width: "100%", background: "white" }}>
         <thead>
-          <tr>
+          <tr style={{ background: "#e3e3e3" }}>
             <th>ID</th>
             <th>Cliente</th>
-            <th>Contacto</th>
+            <th>Tipo</th>
             <th>Fecha</th>
-            <th>Instrucciones</th>
             <th>Estado</th>
             <th>Opciones</th>
           </tr>
@@ -96,12 +95,17 @@ export default function PedidoAdmin() {
             <tr key={p.id} style={{ background: p.state ? "#d3ffd3" : "white" }}>
               <td>{p.id}</td>
               <td><b>{p.nombres}</b> {p.apellidos}</td>
+
               <td>
-                Email: {p.email}<br />
-                Tel: {p.telefono}
+                {p.tipo === "PEDIDO" ? (
+                  <span style={{ color: "purple", fontWeight: "bold" }}>Pedido personalizado</span>
+                ) : (
+                  <span style={{ color: "green", fontWeight: "bold" }}>Encargo catálogo</span>
+                )}
               </td>
+
               <td>{p.date}</td>
-              <td>{p.instrucciones || <i>Sin instrucciones</i>}</td>
+
               <td>
                 <button
                   onClick={() => toggleState(p)}
@@ -115,6 +119,7 @@ export default function PedidoAdmin() {
                   {p.state ? "Listo" : "Pendiente"}
                 </button>
               </td>
+
               <td>
                 <button onClick={() => openDetails(p)} style={{ marginRight: "5px", color: "blue" }}>
                   Ver detalles
@@ -132,25 +137,46 @@ export default function PedidoAdmin() {
         <div style={modalStyle.overlay}>
           <div style={modalStyle.box}>
             <h4>Detalles del Pedido #{modalDetails.pedido.id}</h4>
+
+            <p><b>Tipo:</b> {modalDetails.pedido.tipo}</p>
             <p><b>Cliente:</b> {modalDetails.pedido.nombres} {modalDetails.pedido.apellidos}</p>
             <p><b>Email:</b> {modalDetails.pedido.email}</p>
             <p><b>Teléfono:</b> {modalDetails.pedido.telefono}</p>
             <p><b>Fecha:</b> {modalDetails.pedido.date}</p>
-            <p><b>Instrucciones:</b> {modalDetails.pedido.instrucciones || "Sin instrucciones"}</p>
-            <p><b>Productos:</b></p>
+
+            {modalDetails.pedido.instrucciones && (
+              <p><b>Instrucciones:</b> {modalDetails.pedido.instrucciones}</p>
+            )}
+
+            <h5>Productos / Ítems:</h5>
             <ul>
-              {Array.isArray(modalDetails.pedido.productos) && modalDetails.pedido.productos.length > 0
-                ? modalDetails.pedido.productos.map((prod, i) => (
-                    <li key={i}>{prod.name} — {prod.quantity} x ${prod.price}</li>
-                  ))
-                : <li>Sin productos</li>
-              }
+              {modalDetails.pedido.items?.length > 0 ? (
+                modalDetails.pedido.items.map((it, i) => (
+                  <li key={i}>
+                    <b>{it.nombreProducto || "Sin nombre"}</b>
+                    {" - Cantidad: "}
+                    {it.cantidad} Precio C/U: ${it.precio ?? 0}
+                  </li>
+                ))
+              ) : (
+                <li>Sin ítems</li>
+              )}
             </ul>
-            <p><b>Total:</b> ${modalDetails.pedido.total}</p>
+
+            <p>
+              <b>
+                Total:
+              </b> ${
+              modalDetails.pedido.items?.reduce(
+                (acc, it) => acc + (it.cantidad * (it.precio || 0)), 0) || 0
+              }
+            </p>
+
             <button onClick={closeAll}>Cerrar</button>
           </div>
         </div>
       )}
+
 
       {modalDelete.visible && (
         <div style={modalStyle.overlay}>

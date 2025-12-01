@@ -4,7 +4,6 @@ export const regiones = [
 ];
 
 export const comunas = [
-  //REGIÓN METROPOLITANA DE SANTIAGO 
   { id: 1001, nombre: "Cerrillos", regionId: 1000 },
   { id: 1002, nombre: "Cerro Navia", regionId: 1000 },
   { id: 1003, nombre: "Conchalí", regionId: 1000 },
@@ -58,7 +57,6 @@ export const comunas = [
   { id: 1051, nombre: "Padre Hurtado", regionId: 1000 },
   { id: 1052, nombre: "Peñaflor", regionId: 1000 },
 
-  //VALPARAÍSO
   { id: 6001, nombre: "Valparaíso", regionId: 6000 },
   { id: 6002, nombre: "Casablanca", regionId: 6000 },
   { id: 6003, nombre: "Concón", regionId: 6000 },

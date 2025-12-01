@@ -14,39 +14,28 @@ export default function Administrador() {
 
   const [numUsuarios, setNumUsuarios] = useState(0);
   const [numBlogs, setNumBlogs] = useState(0);
-
-  const fetchNumUsuarios = () => {
-    fetch("/api/personas")
-      .then(res => res.json())
-      .then(data => {
-        setNumUsuarios(data.length);
-      })
-      .catch(err => {
-        console.error("error usuarios:", err);
-      });
-  };
+  const [numPedidos, setNumPedidos] = useState(0);
 
   useEffect(() => {
-    fetchNumUsuarios();
-  }, []);
-
-  //-------------------------------
-
-  const fetchNumBlogs = () => {
     fetch("/api/personas")
       .then(res => res.json())
-      .then(data => {
-        setNumBlogs(data.length);
-      })
-      .catch(err => {
-        console.error("error blog:", err);
-      });
-  };
-
-  useEffect(() => {
-    fetchNumBlogs();
+      .then(data => setNumUsuarios(data.length))
+      .catch(err => console.error("Error usuarios:", err));
   }, []);
 
+  useEffect(() => {
+    fetch("/api/blogs")
+      .then(res => res.json())
+      .then(data => setNumBlogs(data.length))
+      .catch(err => console.error("Error blogs:", err));
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/pedidos")
+      .then(res => res.json())
+      .then(data => setNumPedidos(data.length))
+      .catch(err => console.error("Error pedidos:", err));
+  }, []);
 
   return (
     <div className="admin-layout">
@@ -76,7 +65,7 @@ export default function Administrador() {
 
         <section className="admin-top-sections">
           <div className="admin-big-card blue-card">
-            <span>Numero de Compras</span>
+            <span>Numero de Compras: {numPedidos}</span>
           </div>
           
           <div className="admin-big-card green-card">
@@ -101,7 +90,7 @@ export default function Administrador() {
             <span>Catalogo</span>
           </Link>
 
-          <Link to="/TRABAJO-FULL-STACK-V2/admin/Blogs" className="admin-card">
+          <Link to="/TRABAJO-FULL-STACK-V2/admin/blogs" className="admin-card">
             <span>Blogs</span>
           </Link>
         </section>
