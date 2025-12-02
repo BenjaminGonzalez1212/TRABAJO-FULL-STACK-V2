@@ -94,31 +94,39 @@ export default function Usuarios() {
 
   const addUserConfirm = (e) => {
     e.preventDefault();
-      fetch(
-        `/api/personas`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newUser),
-        }
-      )
 
-      .then(
-        (res) => {
-          if (res.ok) {
-            fetchUsuarios();
-            closeaddUserPopUp();
-          } else {
-            setErrorAdd("Error usuario no añadido");
-          }
-        }
-      )
-      .catch(
-        (err) => {
-          console.error("Error usuario no añadido:", err);
+    const { name, email, password } = newUser;
+
+    if (!name.trim() || !email.trim() || !password.trim()) {
+      setErrorAdd("Todos los campos son obligatorios");
+      return;
+    }
+
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!regexEmail.test(email)) {
+      setErrorAdd("El email no es valido (debe contener @ y un dominio)");
+      return;
+    }
+
+    fetch(`/api/personas`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, password }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          fetchUsuarios();
+          closeaddUserPopUp();
+        } else {
           setErrorAdd("Error usuario no añadido");
         }
-      );
+      })
+      .catch((err) => {
+        console.error("Error usuario no añadido:", err);
+        setErrorAdd("Error usuario no añadido");
+      });
   };
+
 
   const editUserConfirm = (e) => {
     e.preventDefault();

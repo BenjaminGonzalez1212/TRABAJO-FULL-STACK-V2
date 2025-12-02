@@ -7,6 +7,8 @@ export default function CatalogoAdmin() {
   const [modalDelete, setModalDelete] = useState({ visible: false, id: null });
   const [modalAdd, setModalAdd] = useState({ visible: false });
   const [modalEdit, setModalEdit] = useState({ visible: false, id: null });
+  const [errorsAdd, setErrorsAdd] = useState("");
+  const [errorsEdit, setErrorsEdit] = useState("");
 
   const emptyProduct = {
     esPastel: 0,
@@ -39,6 +41,46 @@ export default function CatalogoAdmin() {
       });
   };
 
+  const ValidateProduct = (prod, setError) => {
+    const obligatorios = [
+      "nombre",
+      "categoria",
+      "precio_nuevo",
+      "precio_descuento",
+      "imagen",
+      "descripcion",
+      "ingredientes",
+      "porciones",
+      "peso",
+      "preparacion"
+    ];
+
+    for (const campo of obligatorios) {
+      if (!prod[campo] && prod[campo] !== 0) {
+        setError(`Se deben rellenar todos los campos / Falta: ${campo}`);
+        return false;
+      }
+    }
+
+  const numeros = ["precio_nuevo", "precio_descuento", "stock", "porciones"];
+
+  const nombresBonitos = {
+    precio_nuevo: "Descuento",
+    precio_descuento: "Precio",
+    stock: "Stock",
+    porciones: "Porciones"
+  };
+
+  for (const campo of numeros) {
+    if (Number(prod[campo]) < 0) {
+      const nombreMostrar = nombresBonitos[campo] || campo;
+      setError(`El campo "${nombreMostrar}" no puede ser negativo`);
+      return false;
+    }
+  }
+    return true;
+  };
+
   useEffect(() => {
     fetchProductos();
   }, []);
@@ -48,11 +90,13 @@ export default function CatalogoAdmin() {
   };
 
   const openAdd = () => {
+    setErrorsAdd("");
     setNewProd(emptyProduct);
     setModalAdd({ visible: true });
   };
 
   const openEdit = (prod) => {
+    setErrorsEdit("");
     setEditProd({ ...prod });
     setModalEdit({ visible: true, id: prod.id });
   };
@@ -74,6 +118,8 @@ export default function CatalogoAdmin() {
   };
 
   const confirmAdd = () => {
+    if (!ValidateProduct(newProd, setErrorsAdd)) return;
+
     fetch(`/api/productos`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -83,12 +129,14 @@ export default function CatalogoAdmin() {
         if (res.ok) {
           fetchProductos();
           closeAll();
-        } else alert("Error agregando producto");
+        } else setErrorsAdd("Error agregando producto");
       })
       .catch(err => console.error("Error:", err));
   };
 
   const confirmEdit = () => {
+    if (!ValidateProduct(editProd, setErrorsEdit)) return;
+
     fetch(`/api/productos/${modalEdit.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -98,10 +146,11 @@ export default function CatalogoAdmin() {
         if (res.ok) {
           fetchProductos();
           closeAll();
-        } else alert("Error editando producto");
+        } else setErrorsEdit("Error editando producto");
       })
       .catch(err => console.error("Error:", err));
   };
+
 
   if (loading) return <p>Cargando productos...</p>;
 
@@ -167,6 +216,12 @@ export default function CatalogoAdmin() {
           <div style={modalStyle.box}>
             <h3>Nuevo Producto</h3>
 
+            {errorsAdd && (
+              <p style={{ color: "red", fontWeight: "bold" }}>
+                {errorsAdd}
+              </p>
+            )}
+
             <label>Es Pastel</label>
             <input
               type="checkbox"
@@ -191,7 +246,7 @@ export default function CatalogoAdmin() {
               style={{ marginBottom: "8px", display: "block", width: "100%" }}
             />
 
-            <label>Descuento (en % (No ingrese, signo %, solo números))</label>
+            <label>Descuento (en %)</label>
             <input
               type="number"
               value={newProd.precio_nuevo}
@@ -270,6 +325,12 @@ export default function CatalogoAdmin() {
         <div style={modalStyle.overlay}>
           <div style={modalStyle.box}>
             <h3>Editar Producto</h3>
+
+            {errorsEdit && (
+              <p style={{ color: "red", fontWeight: "bold" }}>
+                {errorsEdit}
+              </p>
+            )}
 
             <label>Es Pastel</label>
             <input

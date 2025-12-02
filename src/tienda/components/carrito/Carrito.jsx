@@ -18,7 +18,7 @@ export default function Carrito() {
   }, []);
 
   const total = cart.reduce(
-    (sum, item) => sum + item.precio_nuevo * item.quantity,
+    (sum, item) => sum + item.precio_descuento * item.quantity, 
     0
   );
 
@@ -70,7 +70,7 @@ export default function Carrito() {
                   </td>
 
                   <td>{item.nombre}</td>
-                  <td>{item.precio_nuevo} clp</td>
+                  <td>{item.precio_descuento} clp</td>
 
                   <td>
                     <div className="d-flex align-items-center">
@@ -94,7 +94,7 @@ export default function Carrito() {
                     </div>
                   </td>
 
-                  <td>{item.precio_nuevo * item.quantity} clp</td>
+                  <td>{item.precio_descuento * item.quantity} clp</td>
 
                   <td>
                     <button

@@ -8,6 +8,8 @@ export default function BlogAdmin() {
   const [modalAdd, setModalAdd] = useState({ visible: false });
   const [modalEdit, setModalEdit] = useState({ visible: false, id: null });
 
+  const [error, setError] = useState("");
+
   const [newPost, setNewPost] = useState({
     name: "",
     date: "",
@@ -48,6 +50,7 @@ export default function BlogAdmin() {
   const openAdd = () => {
     const today = new Date().toISOString().slice(0, 10);
     setNewPost(prev => ({ ...prev, date: today }));
+    setError("");
     setModalAdd({ visible: true });
   };
 
@@ -59,6 +62,7 @@ export default function BlogAdmin() {
       content: blog.content,
       image: blog.image
     });
+    setError("");
     setModalEdit({ visible: true, id: blog.id });
   };
 
@@ -66,6 +70,7 @@ export default function BlogAdmin() {
     setModalAdd({ visible: false });
     setModalDelete({ visible: false, id: null });
     setModalEdit({ visible: false, id: null });
+    setError("");
   };
 
   const confirmDelete = () => {
@@ -84,6 +89,13 @@ export default function BlogAdmin() {
   };
 
   const confirmAdd = () => {
+    if (!newPost.name || !newPost.date || !newPost.description || !newPost.content || !newPost.image) {
+      setError("Por favor completa todos los campos.");
+      return;
+    }
+
+    setError("");
+
     const postToAdd = { ...newPost };
 
     fetch(`/api/blogs`, {
@@ -101,6 +113,13 @@ export default function BlogAdmin() {
   };
 
   const confirmEdit = () => {
+    if (!editPost.name || !editPost.date || !editPost.description || !editPost.content || !editPost.image) {
+      setError("Por favor completa todos los campos.");
+      return;
+    }
+
+    setError("");
+
     fetch(`/api/blogs/${modalEdit.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -207,6 +226,8 @@ export default function BlogAdmin() {
               onChange={e => setNewPost({ ...newPost, image: e.target.value })}
             />
 
+            {error && <p style={{ color: "red" }}>{error}</p>}
+
             <button onClick={confirmAdd} style={{ color: "green" }}>Añadir</button>
             <button onClick={closeAll}>Cancelar</button>
           </div>
@@ -245,6 +266,8 @@ export default function BlogAdmin() {
               value={editPost.image}
               onChange={e => setEditPost({ ...editPost, image: e.target.value })}
             />
+
+            {error && <p style={{ color: "red" }}>{error}</p>}
 
             <button onClick={confirmEdit} style={{ color: "green" }}>Guardar</button>
             <button onClick={closeAll}>Cancelar</button>
